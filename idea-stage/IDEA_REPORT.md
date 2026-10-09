@@ -114,3 +114,45 @@ _（Phase 5 填写）_
 | Scaling Laws for RM Overoptimization | 2210.10760 | 2022-10 | Goodhart 曲线；BoN ≈ RL | 方法学 |
 | HealthBench | 2505.08775 | 2025-05 | 医师 rubric + 理想回答 + meta-eval | 主数据 |
 
+## Ranked Ideas
+
+### 生成与筛选过程
+
+- **生成**：6 个并行"视角"分片（method-transfer / contradiction / untested-assumption / scaling-regime / diagnostic / human-anchoring）共产出 30 个候选。Codex 跨模型 brainstorm 种子不可用（WARN，已跳过）。
+- **机械合并**：按假设去重 → 23 个（合并示例：ideal-regret + 两个 ideal-percentile → I6；non-commitment ceiling + disjunction laundering → I3；invariance card + mutation score → I16）。
+- **客观可行性门**：0 个被淘汰（用户要求忽略 GPU；每个想法都有 API-only HealthBench pilot）。
+- **先验工作标注**：两个标注 agent 对 23 个想法各做 2–4 次定向检索：**没有任何想法被已发表论文直接覆盖**（部分重叠：I16 ≈ MAWILE 2609.22599 的测量工具；I22 的 √(G−1) 上界是经典 Samuelson 不等式；I1 的 +0.25/−0.75 规则是 2509.04664 的 t=0.75 特例；I2 的 τ 公式即 2608.00301 的 Chow 阈值）。
+- **魔鬼代言人分诊（triage）**：由一个未参与生成的独立 agent 对 23 个想法逐一给出最强支持/最强反对/失败模式/新颖性问题并排序。⚠️ **该 agent 与生成者同属 Claude 模型族**，按 ARIS 契约其排序**只用于分配 pilot 名额，不构成淘汰或 acceptance**。
+
+### 排序总表（triage 结果）
+
+| # | ID | 想法 | 最强支持 | 最强反对 | Pilot |
+|---|---|---|---|---|---|
+| 1 | I1 | **Stance-proper rubric credit**（按"承诺/含糊或并列/缺席/矛盾"给分，含糊=沉默） | 一条给分规则同时打掉泛泛而谈、罗列断言、编造 | 规则本身借自 2509.04664；GRPO 会重置阈值（2608.00301）；可能退缩为沉默 | ✅ Pilot 1 |
+| 2 | I3 | Commitment-blind credit 诊断（并列 k 个备选时得分是否不变） | 为"只在罗列断言"给出可控的剂量-反应机制 | 构造的改写 ≠ RL 实际发现的 hack | ✅（并入 Pilot 1） |
+| 3 | I10 | 医师删除 → 负向条目 | 真实专家的"缺席型"标准；删除分类本身可发表 | 删除可能主要是为了简短 → 变相长度惩罚 | ✅ Pilot 2 |
+| 4 | I12 | Induced-action agreement（模拟患者读完回答后做的决策是否与理想回答一致） | 一个测试同时惩罚三种 hack | 模拟患者有效性存疑（2504.18919） | ✅ Pilot 3 |
+| 5 | I7 | Pareto 支配界（任何单调聚合都救不了的比例） | 重构整个"聚合方式"文献的意义 | 近乎同义反复；依赖 hack 生成器 | ✅（Pilot 1 免费附带） |
+| 6 | I2 | 隐含承诺阈值 τ | 一个旋钮统一 precision 型与 presence 型奖励 | 公式已知（2608.00301） | ✅（Pilot 1 免费附带） |
+| 7 | I13 | 医师锚定的 Goodhart 曲线 | 第一条用医师 gold 的过优化曲线 | BoN-4 压力太短 | ✅（作为 gold） |
+| 8 | I21 | Judge 规模 × 打分框架 的编造盲区 | "换大 judge 不行，换框架才行" | 模型差异不止规模 | ✅（小预算） |
+| 9 | I9 | 理想回答锚定的条目剪枝 | 解释理想回答为何只得 0.294 | RL 提示大多没有理想回答 | — |
+| 10 | I11 | 医师改写器 edit-cost 奖励 | 删/增/改三类编辑正对应三种 hack | 改写器可被操纵、成本高 | — （wildcard 储备） |
+| 11 | I8 | 由医师改写推出的偏好来校准聚合 | 免费专家偏好 | 上限受 I7 约束；风格混杂 | — |
+| 12 | I6 | Ideal percentile / regret 离线预测 | 训练前预测可 hack 程度 | 统计功效低；理想回答质量混杂 | — |
+| 13 | I17 | Rubric 可预测性即隐藏压力 | "LLM 生成 rubric 更易被 hack" | 与条目泛化程度混杂 | — |
+| 14 | I4 | 不分情境的确定性溢价 | 医师要求保留不确定性时 rubric 仍奖励自信 | 去 hedge 会改变事实内容 | —（I1 的一个格子） |
+| 15 | I5 | 细粒度判、粗粒度奖 | 调和 ≥3 档 vs 二值之争 | 只是消融 | —（I1 的一个格子） |
+| 16 | I16 | Rubric invariance card / mutation score | 训练前廉价审计 | 测量工具≈MAWILE 2609.22599 | — |
+| 17 | I14 | Hack-carrier 条目 | 定向修 rubric | 部分被 2605.12474 预见 | — |
+| 18 | I15 | Hack 所在：条目 vs judge vs 协议 | 决定哪类缓解有效 | 设计格子多、只是描述 | — |
+| 19 | I19 | 具体度阶梯 | "规定检查而非内容" | 医师 rubric 已在 L2–L3 | — |
+| 20 | I23 | 聚合技巧只是压力旋钮 | "缓解=伪装的早停" | 需要 RL 曲线 | — |
+| 21 | I20 | 邻近病例诱饵条目 | 无标注的 hack 监控 | 对 rubric-aware hack 无效 | — |
+| 22 | I18 | 条目密度相变 | rubric 大小设计规则 | 需合成条目 | — |
+| 23 | I22 | GRPO std 归一化下的抽查罚款失效 | "大罚款被悄悄中和" | 理论是经典不等式；偏离主轴 | — |
+
+**分诊建议的统一论文主线**（I3 诊断 + I2 理论 + I7 界 + I1 机制 + I10 的删除分类作为人类证据 + I13 医师 gold）：
+
+> *Rubric 奖励为"提到"付费，医师为"正确地承诺"付费。把逐条给分从 presence 改为 stance，可用一条规则同时消除泛泛而谈、罗列断言与编造，并把奖励最优点移向医师理想回答——这是任何对 presence 判定的重新聚合都做不到的。*
+
