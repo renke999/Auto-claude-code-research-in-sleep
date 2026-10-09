@@ -1,0 +1,71 @@
+Stage A: prompts=100, variants=['aware', 'blist', 'decisive', 'disj1', 'disj3', 'disj9', 'generic', 'hedged', 'ideal', 'numpert', 'padded', 'plain']
+rewrite refusals excluded: Counter({'disj9': 25, 'disj3': 20, 'disj1': 20, 'hedged': 6, 'decisive': 2})
+
+== Mean scores (rep 0) ==   presence | stance-proper | stance-as-presence | words | P(>=ideal) pres | P(>=ideal) proper
+ideal     n=100  0.309 | +0.212 | 0.528 |   255 | 1.00 | 1.00
+plain     n= 99  0.588 | +0.439 | 0.673 |   380 | 0.84 | 0.68
+decisive  n= 97  0.203 | +0.133 | 0.426 |    42 | 0.45 | 0.43
+generic   n=100  0.479 | +0.385 | 0.643 |   327 | 0.78 | 0.72
+blist     n=100  0.395 | +0.338 | 0.612 |   760 | 0.68 | 0.60
+aware     n=100  0.792 | +0.747 | 0.800 |   303 | 0.96 | 0.96
+hedged    n= 93  0.537 | +0.267 | 0.653 |   460 | 0.80 | 0.55
+disj1     n= 79  0.500 | +0.385 | 0.635 |   441 | 0.76 | 0.73
+disj3     n= 80  0.448 | +0.276 | 0.601 |   607 | 0.70 | 0.54
+disj9     n= 75  0.417 | +0.258 | 0.597 |   775 | 0.72 | 0.63
+padded    n= 98  0.588 | +0.400 | 0.666 |   517 | 0.84 | 0.72
+numpert   n= 52  0.534 | +0.195 | 0.607 |   397 | 0.85 | 0.54
+
+== Paired deltas vs plain (rep 0), mean [95% CI] ==
+hedged    n= 92  Δpresence -0.051 (-0.091, -0.014)   Δproper -0.175 (-0.238, -0.115)
+disj1     n= 78  Δpresence -0.102 (-0.147, -0.057)   Δproper -0.065 (-0.126, -0.007)
+disj3     n= 80  Δpresence -0.154 (-0.207, -0.107)   Δproper -0.185 (-0.269, -0.105)
+disj9     n= 74  Δpresence -0.180 (-0.245, -0.115)   Δproper -0.184 (-0.292, -0.089)
+padded    n= 98  Δpresence +0.000 (-0.035, 0.035)   Δproper -0.036 (-0.088, 0.017)
+numpert   n= 52  Δpresence -0.066 (-0.125, -0.012)   Δproper -0.258 (-0.418, -0.122)
+aware     n= 99  Δpresence +0.207 (0.165, 0.247)   Δproper +0.308 (0.249, 0.367)
+decisive  n= 96  Δpresence -0.377 (-0.426, -0.327)   Δproper -0.289 (-0.376, -0.2)
+generic   n= 99  Δpresence -0.108 (-0.15, -0.066)   Δproper -0.054 (-0.117, 0.001)
+blist     n= 99  Δpresence -0.192 (-0.244, -0.141)   Δproper -0.102 (-0.183, -0.022)
+
+== Noise floor (rep0 vs rep1 on replicated prompts) ==
+presence: mean |Δ| = 0.087  (n=230)  sd≈0.101
+proper: mean |Δ| = 0.129  (n=227)  sd≈0.198
+stance label agreement: raw=0.819  kappa=0.730
+presence label agreement: kappa=0.803
+
+== Wrong-number test (numpert vs plain) ==
+presence: n=52 mean Δ=-0.066  frac penalised (Δ<0)=0.46  frac Δ<-0.05=0.44
+proper: n=52 mean Δ=-0.258  frac penalised (Δ<0)=0.69  frac Δ<-0.05=0.62
+'contradicted' labels: numpert 96 vs plain 61 over 52 prompts
+
+== Item-level credit by k (positive items) ==
+plain   items=906  P(presence credit)=0.642  P(committed)=0.666  P(hedged)=0.203
+disj1   items=716  P(presence credit)=0.581  P(committed)=0.587  P(hedged)=0.244
+disj3   items=718  P(presence credit)=0.539  P(committed)=0.529  P(hedged)=0.286
+disj9   items=676  P(presence credit)=0.519  P(committed)=0.530  P(hedged)=0.283
+hedged  items=845  P(presence credit)=0.609  P(committed)=0.462  P(hedged)=0.408
+negative items (penalty fired):
+  plain   items=393 P(penalty)=0.198
+  disj1   items=302 P(penalty)=0.235
+  disj3   items=299 P(penalty)=0.278
+  disj9   items=277 P(penalty)=0.307
+  hedged  items=363 P(penalty)=0.231
+
+== Implied commitment threshold tau = (R_hedge - R_wrong)/(R_right - R_wrong) (prompt-mean rewards) ==
+presence: n=40 R_right=0.637 R_wrong=0.576 R_hedge(disj3)=0.448 -> tau=-2.10
+proper: n=40 R_right=0.539 R_wrong=0.285 R_hedge(disj3)=0.310 -> tau=0.10
+
+== Pareto dominance of aware over ideal (rep 0) ==
+presence: aware weakly dominates ideal in 47/100 = 0.47 (strictly 0.46)
+stance-committed: aware weakly dominates ideal in 52/100 = 0.52 (strictly 0.50)
+
+== Ablation: P(variant >= ideal) and mean delta vs plain, by credit rule ==
+presence(judge)             aware:0.96/+0.20  disj3:0.66/-0.20  disj9:0.64/-0.25  hedged:0.79/-0.06  numpert:0.85/-0.07  padded:0.84/+0.00
+proper h=0,c=-3             aware:0.96/+0.31  disj3:0.53/-0.19  disj9:0.55/-0.22  hedged:0.54/-0.18  numpert:0.54/-0.26  padded:0.73/-0.03
+hedged-as-commit h=1,c=-3   aware:0.89/+0.16  disj3:0.53/-0.14  disj9:0.57/-0.17  hedged:0.69/+0.03  numpert:0.54/-0.27  padded:0.71/-0.04
+ConRub-like h=1,c=-1        aware:0.93/+0.14  disj3:0.55/-0.13  disj9:0.62/-0.16  hedged:0.69/+0.00  numpert:0.56/-0.15  padded:0.72/-0.02
+h=0,c=-1                    aware:0.97/+0.28  disj3:0.51/-0.19  disj9:0.55/-0.21  hedged:0.49/-0.20  numpert:0.62/-0.13  padded:0.74/-0.01
+
+== tau using the 'hedged' (conditional/hedge-everything) variant as R_hedge ==
+presence: n=52 right=0.601 wrong=0.534 hedge=0.528 tau=-0.10
+proper: n=52 right=0.453 wrong=0.195 hedge=0.276 tau=0.31
