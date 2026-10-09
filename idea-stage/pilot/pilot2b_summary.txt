@@ -1,0 +1,11 @@
+n=49  (per-answer presence agreement; share of edits coder1 Sonnet / coder2 Opus)
+  hedge_or_alternatives_removed        agree=0.84  share 0.031 / 0.026
+  padding_or_unrequested_removed       agree=0.94  share 0.175 / 0.207
+  wrong_or_unsafe_specific_corrected   agree=0.84  share 0.095 / 0.074
+  redundancy_removed                   agree=0.80  share 0.049 / 0.054
+  overconfidence_softened              agree=0.92  share 0.040 / 0.033
+  action_or_specific_added             agree=0.94  share 0.305 / 0.301
+  context_question_added               agree=1.00  share 0.012 / 0.013
+  tailoring_added                      agree=0.82  share 0.065 / 0.048
+  style_or_format_only                 agree=0.92  share 0.197 / 0.189
+  other                                agree=0.67  share 0.031 / 0.056
