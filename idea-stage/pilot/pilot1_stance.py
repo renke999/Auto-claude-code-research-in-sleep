@@ -60,6 +60,8 @@ def stage_a(n=100, n_rep=20):
     jobs, keys = [], []
     for i, (ex, v) in enumerate(rows):
         for name, resp in v.items():
+            if not resp:
+                continue  # e.g. numpert when the plain answer has no perturbable numbers
             jobs.append((ex, resp, ""))
             keys.append((i, name, 0))
             if i < n_rep:
