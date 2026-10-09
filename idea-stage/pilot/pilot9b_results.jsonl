@@ -1,0 +1,304 @@
+{"i": 0, "variant": "ideal", "commit3": ["committed", "evasive", null, null, "committed", "evasive", "committed", null, null, "committed", "committed", null]}
+{"i": 0, "variant": "plain", "commit3": ["committed", "committed", null, null, "committed", "committed", "committed", null, null, "committed", "committed", null]}
+{"i": 1, "variant": "ideal", "commit3": ["committed", null, null, null, "committed", null, null, null, null, null, "evasive", "committed", "committed", null, null, "committed", null]}
+{"i": 1, "variant": "plain", "commit3": ["committed", null, null, null, "evasive", null, null, null, null, null, "evasive", "committed", "committed", null, null, "committed", null]}
+{"i": 1, "variant": "numpert", "commit3": ["committed", null, null, null, "evasive", null, null, null, null, null, "committed", "committed", "committed", null, null, "committed", null]}
+{"i": 1, "variant": "numsub", "commit3": ["committed", null, null, null, "evasive", null, null, null, null, null, "evasive", "committed", "committed", null, null, "committed", null]}
+{"i": 2, "variant": "ideal", "commit3": ["evasive", null, "not_addressed", "committed", "evasive", "not_addressed", "not_addressed", "not_addressed", "not_addressed", null, "evasive", "committed", null]}
+{"i": 2, "variant": "plain", "commit3": ["evasive", null, "evasive", "committed", "committed", "committed", "evasive", "committed", "committed", null, "not_addressed", "committed", null]}
+{"i": 3, "variant": "ideal", "commit3": ["contradicted", "committed", null, "not_addressed", "not_addressed", "contradicted", null, null, "not_addressed", "contradicted", null, null, null, null, "contradicted", "contradicted", null]}
+{"i": 3, "variant": "plain", "commit3": ["committed", "committed", null, "evasive", "committed", "committed", null, null, "evasive", "committed", null, null, null, null, "committed", "committed", null]}
+{"i": 4, "variant": "ideal", "commit3": ["evasive", "evasive", null, null, null, "not_addressed", "not_addressed", null, null, "committed", "evasive", "not_addressed", "not_addressed", null, null, null, null, null, "evasive"]}
+{"i": 4, "variant": "plain", "commit3": ["committed", "committed", null, null, null, "committed", "committed", null, null, "committed", "committed", "committed", "committed", null, null, null, null, null, "committed"]}
+{"i": 4, "variant": "numpert", "commit3": ["committed", "committed", null, null, null, "committed", "not_addressed", null, null, "committed", "committed", "committed", "committed", null, null, null, null, null, "committed"]}
+{"i": 4, "variant": "numsub", "commit3": ["committed", "committed", null, null, null, "committed", "contradicted", null, null, "committed", "committed", "committed", "committed", null, null, null, null, null, "committed"]}
+{"i": 5, "variant": "ideal", "commit3": [null, "committed", null, null, null, null, "evasive", null, "evasive", "evasive", "committed", "committed", "evasive", "not_addressed", null, "contradicted", null]}
+{"i": 5, "variant": "plain", "commit3": [null, "not_addressed", null, null, null, null, "evasive", null, "evasive", "evasive", "evasive", "evasive", "not_addressed", "evasive", null, "contradicted", null]}
+{"i": 5, "variant": "numpert", "commit3": [null, "not_addressed", null, null, null, null, "evasive", null, "evasive", "evasive", "evasive", "evasive", "not_addressed", "evasive", null, "contradicted", null]}
+{"i": 5, "variant": "numsub", "commit3": [null, "committed", null, null, null, null, "evasive", null, "evasive", "evasive", "evasive", "evasive", "not_addressed", "evasive", null, "contradicted", null]}
+{"i": 6, "variant": "ideal", "commit3": [null, null, "not_addressed", null, "committed", "not_addressed", "committed", null, "contradicted", null]}
+{"i": 6, "variant": "plain", "commit3": [null, null, "committed", null, "committed", "committed", "committed", null, "contradicted", null]}
+{"i": 6, "variant": "numpert", "commit3": [null, null, "committed", null, "committed", "committed", "committed", null, "contradicted", null]}
+{"i": 6, "variant": "numsub", "commit3": [null, null, "evasive", null, "committed", "committed", "not_addressed", null, "contradicted", null]}
+{"i": 7, "variant": "ideal", "commit3": [null, null, null, null, null, null, null, null, null, null, null, null, null, null]}
+{"i": 7, "variant": "plain", "commit3": [null, null, null, null, null, null, null, null, null, null, null, null, null, null]}
+{"i": 7, "variant": "numpert", "commit3": [null, null, null, null, null, null, null, null, null, null, null, null, null, null]}
+{"i": 7, "variant": "numsub", "commit3": [null, null, null, null, null, null, null, null, null, null, null, null, null, null]}
+{"i": 8, "variant": "ideal", "commit3": [null, null, null, null, null, null, null, null]}
+{"i": 8, "variant": "plain", "commit3": [null, null, null, null, null, null, null, null]}
+{"i": 9, "variant": "ideal", "commit3": [null, null, "evasive", null, null, null, null, "contradicted", null]}
+{"i": 9, "variant": "plain", "commit3": [null, null, "committed", null, null, null, null, "committed", null]}
+{"i": 10, "variant": "ideal", "commit3": [null, null, "committed", "not_addressed", null, null, null, null, "not_addressed", null]}
+{"i": 10, "variant": "plain", "commit3": [null, null, "committed", "evasive", null, null, null, null, "committed", null]}
+{"i": 10, "variant": "numpert", "commit3": [null, null, "committed", "evasive", null, null, null, null, "contradicted", null]}
+{"i": 10, "variant": "numsub", "commit3": [null, null, "committed", "evasive", null, null, null, null, "contradicted", null]}
+{"i": 11, "variant": "ideal", "commit3": ["not_addressed", "not_addressed", "not_addressed", "not_addressed", "committed", null, null, "not_addressed", null, "not_addressed", "not_addressed", null]}
+{"i": 11, "variant": "plain", "commit3": ["committed", "committed", "committed", "committed", "committed", null, null, "not_addressed", null, "committed", "committed", null]}
+{"i": 11, "variant": "numpert", "commit3": ["committed", "committed", "committed", "committed", "committed", null, null, "not_addressed", null, "committed", "contradicted", null]}
+{"i": 11, "variant": "numsub", "commit3": ["committed", "committed", "committed", "committed", "committed", null, null, "not_addressed", null, "committed", "contradicted", null]}
+{"i": 12, "variant": "ideal", "commit3": ["not_addressed", null, null, null, "evasive", null, "committed", "not_addressed", "evasive", null]}
+{"i": 12, "variant": "plain", "commit3": ["committed", null, null, null, "committed", null, "not_addressed", "committed", "committed", null]}
+{"i": 13, "variant": "ideal", "commit3": [null, "evasive", null, null, "evasive", "committed", "evasive", "not_addressed", null, null, null, null, "committed", null]}
+{"i": 13, "variant": "plain", "commit3": [null, "evasive", null, null, "committed", "committed", "committed", "not_addressed", null, null, null, null, "committed", null]}
+{"i": 13, "variant": "numpert", "commit3": [null, "evasive", null, null, "committed", "committed", "committed", "evasive", null, null, null, null, "committed", null]}
+{"i": 13, "variant": "numsub", "commit3": [null, "evasive", null, null, "committed", "committed", "committed", "evasive", null, null, null, null, "committed", null]}
+{"i": 14, "variant": "ideal", "commit3": [null, null, "evasive", null, null, null, null, "committed", null, null, null]}
+{"i": 14, "variant": "plain", "commit3": [null, null, "not_addressed", null, null, null, null, "committed", null, null, null]}
+{"i": 15, "variant": "ideal", "commit3": ["evasive", "committed", "committed", null, "evasive", "committed", "committed", "evasive", null]}
+{"i": 15, "variant": "plain", "commit3": ["evasive", "committed", "evasive", null, "evasive", "evasive", "committed", "evasive", null]}
+{"i": 16, "variant": "ideal", "commit3": [null, "committed", null, "committed", "committed", null, "committed", null]}
+{"i": 16, "variant": "plain", "commit3": [null, "committed", null, "committed", "committed", null, "committed", null]}
+{"i": 16, "variant": "numpert", "commit3": [null, "committed", null, "committed", "committed", null, "committed", null]}
+{"i": 16, "variant": "numsub", "commit3": [null, "committed", null, "committed", "committed", null, "committed", null]}
+{"i": 17, "variant": "ideal", "commit3": [null, null, null, null, "committed", null, "not_addressed", "committed", "not_addressed", null, null, null, "committed", "not_addressed", "committed", "not_addressed", null, null, null, null]}
+{"i": 17, "variant": "plain", "commit3": [null, null, null, null, "committed", null, "evasive", "committed", "not_addressed", null, null, null, "committed", "not_addressed", "committed", "evasive", null, null, null, null]}
+{"i": 17, "variant": "numpert", "commit3": [null, null, null, null, "committed", null, "evasive", "committed", "not_addressed", null, null, null, "committed", "not_addressed", "evasive", "evasive", null, null, null, null]}
+{"i": 17, "variant": "numsub", "commit3": [null, null, null, null, "committed", null, "evasive", "committed", "not_addressed", null, null, null, "committed", "not_addressed", "evasive", "evasive", null, null, null, null]}
+{"i": 18, "variant": "ideal", "commit3": ["committed", "committed", "evasive", "not_addressed", null, "not_addressed", null, null, null, "committed", "committed", "committed", "not_addressed", "not_addressed", "not_addressed", null, null, null, "committed", null]}
+{"i": 18, "variant": "plain", "commit3": ["committed", "committed", "evasive", "not_addressed", null, "not_addressed", null, null, null, "committed", "committed", "committed", "committed", "evasive", "not_addressed", null, null, null, "committed", null]}
+{"i": 19, "variant": "ideal", "commit3": ["evasive", "committed", "committed", "evasive", null, null, "committed", null, "evasive", "evasive", null, "evasive", "evasive", null, null, null, null, "committed", "committed", null]}
+{"i": 19, "variant": "plain", "commit3": ["evasive", "committed", "committed", "evasive", null, null, "committed", null, "not_addressed", "evasive", null, "not_addressed", "evasive", null, null, null, null, "committed", "committed", null]}
+{"i": 20, "variant": "ideal", "commit3": [null, null, null, null, null, null, "committed", "committed", "evasive", null, "committed", "committed", null]}
+{"i": 20, "variant": "plain", "commit3": ["committed", "committed", "evasive", null, null, "committed", "committed", "committed", "committed", null, "committed", "committed", null]}
+{"i": 20, "variant": "numpert", "commit3": ["committed", "committed", "committed", null, null, "committed", "committed", "committed", "contradicted", null, "contradicted", "committed", null]}
+{"i": 20, "variant": "numsub", "commit3": ["committed", "committed", "committed", null, null, "committed", "committed", "committed", "committed", null, "contradicted", "committed", null]}
+{"i": 21, "variant": "ideal", "commit3": ["committed", null, "committed", null, "evasive", "not_addressed", "committed", null, null, null, "committed", "committed", null]}
+{"i": 21, "variant": "plain", "commit3": ["committed", null, "evasive", null, "committed", "committed", "evasive", null, null, null, "committed", "evasive", null]}
+{"i": 22, "variant": "ideal", "commit3": [null, null, null, null, null, null, null, "committed", "not_addressed", null]}
+{"i": 22, "variant": "plain", "commit3": [null, null, null, null, null, null, null, "committed", "not_addressed", null]}
+{"i": 23, "variant": "ideal", "commit3": [null, null, null, null, null, null, null, null, null, null, "not_addressed", null, "committed", "not_addressed", null]}
+{"i": 23, "variant": "plain", "commit3": [null, null, null, null, null, null, null, null, null, null, "committed", null, "committed", "committed", null]}
+{"i": 23, "variant": "numpert", "commit3": [null, null, null, null, null, null, null, null, null, null, "committed", null, "contradicted", "committed", null]}
+{"i": 23, "variant": "numsub", "commit3": [null, null, null, null, null, null, null, null, null, null, "committed", null, "contradicted", "committed", null]}
+{"i": 24, "variant": "ideal", "commit3": [null, "not_addressed", null, null, "evasive", "evasive", "evasive", "evasive", "committed", "evasive", "not_addressed", "not_addressed", null]}
+{"i": 24, "variant": "plain", "commit3": [null, "committed", null, null, "committed", "committed", "committed", "committed", "committed", "evasive", "committed", "committed", null]}
+{"i": 24, "variant": "numpert", "commit3": [null, "committed", null, null, "committed", "contradicted", "committed", "committed", "committed", "contradicted", "committed", "committed", null]}
+{"i": 24, "variant": "numsub", "commit3": [null, "committed", null, null, "committed", "evasive", "contradicted", "committed", "committed", "contradicted", "committed", "committed", null]}
+{"i": 25, "variant": "ideal", "commit3": ["committed", "not_addressed", null, "not_addressed", "not_addressed", null, "evasive", null]}
+{"i": 25, "variant": "plain", "commit3": ["committed", "evasive", null, "committed", "committed", null, "not_addressed", null]}
+{"i": 26, "variant": "ideal", "commit3": [null, "not_addressed", "not_addressed", null, "not_addressed", "evasive", null, "committed", null, "committed", null]}
+{"i": 26, "variant": "plain", "commit3": [null, "not_addressed", "not_addressed", null, "committed", "committed", null, "committed", null, "committed", null]}
+{"i": 26, "variant": "numpert", "commit3": [null, "not_addressed", "not_addressed", null, "committed", "committed", null, "committed", null, "committed", null]}
+{"i": 26, "variant": "numsub", "commit3": [null, "not_addressed", "not_addressed", null, "committed", "committed", null, "committed", null, "committed", null]}
+{"i": 27, "variant": "ideal", "commit3": [null, null, null, null, "not_addressed", "evasive", null, "evasive", null]}
+{"i": 27, "variant": "plain", "commit3": [null, null, null, null, "committed", "committed", null, "evasive", null]}
+{"i": 28, "variant": "ideal", "commit3": ["evasive", "evasive", "evasive", null, "not_addressed", "evasive", "evasive", null, "evasive", null, "not_addressed", null, null, "committed"]}
+{"i": 28, "variant": "plain", "commit3": ["evasive", "committed", "committed", null, "evasive", "committed", "evasive", null, "evasive", null, "committed", null, null, "committed"]}
+{"i": 29, "variant": "ideal", "commit3": [null, "committed", null, null, null, "not_addressed", "not_addressed", null, null, null, null]}
+{"i": 29, "variant": "plain", "commit3": [null, "committed", null, null, null, "committed", "evasive", null, null, null, null]}
+{"i": 29, "variant": "numpert", "commit3": [null, "committed", null, null, null, "committed", "evasive", null, null, null, null]}
+{"i": 29, "variant": "numsub", "commit3": [null, "committed", null, null, null, "committed", "evasive", null, null, null, null]}
+{"i": 30, "variant": "ideal", "commit3": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "committed", null]}
+{"i": 30, "variant": "plain", "commit3": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "committed", null]}
+{"i": 31, "variant": "ideal", "commit3": [null, null, null, null, null, null, "evasive", null]}
+{"i": 31, "variant": "plain", "commit3": [null, null, null, null, null, null, "evasive", null]}
+{"i": 32, "variant": "ideal", "commit3": [null, null, null, null, null, null, "committed", null]}
+{"i": 32, "variant": "plain", "commit3": [null, null, null, null, null, null, "committed", null]}
+{"i": 33, "variant": "ideal", "commit3": [null, null, null, null, null, null, null, null, null, null, "contradicted", null]}
+{"i": 33, "variant": "plain", "commit3": [null, null, null, null, null, null, null, null, null, null, "evasive", null]}
+{"i": 34, "variant": "ideal", "commit3": ["committed", "not_addressed", "not_addressed", null, null, "committed", "not_addressed", null, "evasive", null, null, "not_addressed", null]}
+{"i": 34, "variant": "plain", "commit3": ["committed", "evasive", "not_addressed", null, null, "committed", "not_addressed", null, "committed", null, null, "committed", null]}
+{"i": 34, "variant": "numpert", "commit3": ["committed", "evasive", "not_addressed", null, null, "committed", "not_addressed", null, "evasive", null, null, "contradicted", null]}
+{"i": 34, "variant": "numsub", "commit3": ["committed", "evasive", "not_addressed", null, null, "committed", "not_addressed", null, "committed", null, null, "contradicted", null]}
+{"i": 35, "variant": "ideal", "commit3": ["not_addressed", "evasive", "committed", "committed", null, "committed", "evasive", "committed", null, null, null]}
+{"i": 35, "variant": "plain", "commit3": ["not_addressed", "not_addressed", "committed", "committed", null, "committed", "committed", "evasive", null, null, null]}
+{"i": 36, "variant": "ideal", "commit3": ["evasive", "committed", "committed", "committed", "committed", null, "contradicted", "evasive", "evasive", "committed", null, null, "contradicted", null]}
+{"i": 36, "variant": "plain", "commit3": ["evasive", "evasive", "evasive", "committed", "not_addressed", null, "evasive", "not_addressed", "evasive", "committed", null, null, "contradicted", null]}
+{"i": 36, "variant": "numpert", "commit3": ["evasive", "evasive", "evasive", "committed", "not_addressed", null, "evasive", "not_addressed", "evasive", "committed", null, null, "contradicted", null]}
+{"i": 36, "variant": "numsub", "commit3": ["evasive", "committed", "committed", "committed", "not_addressed", null, "contradicted", "not_addressed", "evasive", "committed", null, null, "contradicted", null]}
+{"i": 37, "variant": "ideal", "commit3": [null, "not_addressed", "not_addressed", "evasive", "evasive", "not_addressed", "not_addressed", "not_addressed", null, "committed", null]}
+{"i": 37, "variant": "plain", "commit3": [null, "not_addressed", "not_addressed", "committed", "evasive", "not_addressed", "committed", "evasive", null, "committed", null]}
+{"i": 37, "variant": "numpert", "commit3": [null, "not_addressed", "not_addressed", "committed", "committed", "not_addressed", "committed", "evasive", null, "contradicted", null]}
+{"i": 37, "variant": "numsub", "commit3": [null, "not_addressed", "not_addressed", "committed", "evasive", "not_addressed", "committed", "committed", null, "committed", null]}
+{"i": 38, "variant": "ideal", "commit3": ["committed", null, "committed", null, "evasive", "evasive", "committed", "evasive", null, null, null, null, null, null, null, "committed", null, null, null, "committed"]}
+{"i": 38, "variant": "plain", "commit3": ["committed", null, "committed", null, "evasive", "committed", "committed", "committed", null, null, null, null, null, null, null, "committed", null, null, null, "committed"]}
+{"i": 38, "variant": "numpert", "commit3": ["committed", null, "committed", null, "evasive", "committed", "evasive", "committed", null, null, null, null, null, null, null, "committed", null, null, null, "committed"]}
+{"i": 38, "variant": "numsub", "commit3": ["committed", null, "committed", null, "evasive", "committed", "committed", "committed", null, null, null, null, null, null, null, "committed", null, null, null, "committed"]}
+{"i": 39, "variant": "ideal", "commit3": ["not_addressed", "not_addressed", "not_addressed", null, null, "not_addressed", "not_addressed", "not_addressed", null, null, null, null, null, null, "contradicted", null]}
+{"i": 39, "variant": "plain", "commit3": ["evasive", "evasive", "not_addressed", null, null, "committed", "committed", "committed", null, null, null, null, null, null, "contradicted", null]}
+{"i": 39, "variant": "numpert", "commit3": ["committed", "evasive", "not_addressed", null, null, "committed", "committed", "committed", null, null, null, null, null, null, "contradicted", null]}
+{"i": 39, "variant": "numsub", "commit3": ["committed", "evasive", "not_addressed", null, null, "committed", "committed", "committed", null, null, null, null, null, null, "contradicted", null]}
+{"i": 40, "variant": "ideal", "commit3": [null, null, null, null, null, "not_addressed", null, null, "not_addressed", "not_addressed", "not_addressed", "not_addressed", "evasive", "evasive", null, null, null, null, "not_addressed", null]}
+{"i": 40, "variant": "plain", "commit3": [null, null, null, null, null, "committed", null, null, "committed", "evasive", "not_addressed", "not_addressed", "committed", "committed", null, null, null, null, "committed", null]}
+{"i": 41, "variant": "ideal", "commit3": ["committed", null, null, "committed", null, null, "committed", null]}
+{"i": 41, "variant": "plain", "commit3": ["evasive", null, null, "evasive", null, null, "committed", null]}
+{"i": 42, "variant": "ideal", "commit3": [null, null, null, null, null, null, null, "committed", null]}
+{"i": 42, "variant": "plain", "commit3": [null, null, null, null, null, null, null, "committed", null]}
+{"i": 42, "variant": "numpert", "commit3": [null, null, null, null, null, null, null, "contradicted", null]}
+{"i": 42, "variant": "numsub", "commit3": [null, null, null, null, null, null, null, "contradicted", null]}
+{"i": 43, "variant": "ideal", "commit3": [null, null, "committed", null, null, "evasive", null, null, "evasive", "not_addressed", null, "not_addressed", null, "evasive"]}
+{"i": 43, "variant": "plain", "commit3": [null, null, "committed", null, null, "committed", null, null, "committed", "evasive", null, "evasive", null, "committed"]}
+{"i": 43, "variant": "numpert", "commit3": [null, null, "committed", null, null, "evasive", null, null, "contradicted", "evasive", null, "evasive", null, "contradicted"]}
+{"i": 43, "variant": "numsub", "commit3": [null, null, "committed", null, null, "committed", null, null, "contradicted", "evasive", null, "evasive", null, "contradicted"]}
+{"i": 44, "variant": "ideal", "commit3": ["committed", "evasive", "committed", "evasive", null, null, null, null, "evasive", "evasive", null, "committed", "not_addressed", null, null, null]}
+{"i": 44, "variant": "plain", "commit3": ["committed", "evasive", "committed", "evasive", null, null, null, null, "evasive", "evasive", null, "committed", "committed", null, null, null]}
+{"i": 44, "variant": "numpert", "commit3": ["committed", "evasive", "contradicted", "evasive", null, null, null, null, "committed", "evasive", null, "committed", "committed", null, null, null]}
+{"i": 44, "variant": "numsub", "commit3": ["committed", "evasive", "contradicted", "evasive", null, null, null, null, "evasive", "evasive", null, "committed", "committed", null, null, null]}
+{"i": 45, "variant": "ideal", "commit3": ["committed", "committed", null, null, null, "not_addressed", "not_addressed", "evasive", "not_addressed", "not_addressed", null, null, null, null, "committed", null]}
+{"i": 45, "variant": "plain", "commit3": ["committed", "contradicted", null, null, null, "committed", "evasive", "evasive", "not_addressed", "committed", null, null, null, null, "committed", null]}
+{"i": 46, "variant": "ideal", "commit3": ["committed", "evasive", "committed", null, null, null, null, null, "committed", "committed", null, "not_addressed", null]}
+{"i": 46, "variant": "plain", "commit3": ["committed", "committed", "committed", null, null, null, null, null, "committed", "committed", null, "not_addressed", null]}
+{"i": 47, "variant": "ideal", "commit3": ["committed", "committed", "contradicted", "committed", null, "committed", "contradicted", null, "committed", null, null, null, null]}
+{"i": 47, "variant": "plain", "commit3": ["committed", "committed", "evasive", "committed", null, "committed", "contradicted", null, "committed", null, null, null, null]}
+{"i": 47, "variant": "numpert", "commit3": ["committed", "contradicted", "not_addressed", "contradicted", null, "committed", "contradicted", null, "committed", null, null, null, null]}
+{"i": 47, "variant": "numsub", "commit3": ["committed", "not_addressed", "evasive", "contradicted", null, "committed", "contradicted", null, "committed", null, null, null, null]}
+{"i": 48, "variant": "ideal", "commit3": [null, "committed", "evasive", "evasive", "not_addressed", "committed", "not_addressed", null, null, null, null, null, null, null, "not_addressed", null, null]}
+{"i": 48, "variant": "plain", "commit3": [null, "committed", "committed", "evasive", "committed", "committed", "not_addressed", null, null, null, null, null, null, null, "not_addressed", null, null]}
+{"i": 49, "variant": "ideal", "commit3": ["not_addressed", "committed", "contradicted", "committed", "committed", "evasive", "not_addressed", "not_addressed", null, null, "committed", "evasive", "committed", "committed", null, "not_addressed", null]}
+{"i": 49, "variant": "plain", "commit3": ["committed", "evasive", "not_addressed", "not_addressed", "committed", "committed", "not_addressed", "not_addressed", null, null, "committed", "committed", "evasive", "committed", null, "committed", null]}
+{"i": 49, "variant": "numpert", "commit3": ["committed", "evasive", "contradicted", "evasive", "contradicted", "committed", "not_addressed", "not_addressed", null, null, "contradicted", "committed", "committed", "committed", null, "committed", null]}
+{"i": 49, "variant": "numsub", "commit3": ["committed", "evasive", "not_addressed", "not_addressed", "contradicted", "committed", "not_addressed", "not_addressed", null, null, "contradicted", "not_addressed", "committed", "committed", null, "committed", null]}
+{"i": 50, "variant": "ideal", "commit3": ["evasive", "not_addressed", "committed", "committed", null, null, "evasive", "committed", "not_addressed", "committed", null, null, "committed", null]}
+{"i": 50, "variant": "plain", "commit3": ["committed", "committed", "committed", "committed", null, null, "committed", "committed", "committed", "committed", null, null, "committed", null]}
+{"i": 50, "variant": "numpert", "commit3": ["committed", "committed", "committed", "committed", null, null, "committed", "committed", "committed", "committed", null, null, "committed", null]}
+{"i": 50, "variant": "numsub", "commit3": ["committed", "committed", "committed", "committed", null, null, "committed", "committed", "committed", "committed", null, null, "committed", null]}
+{"i": 51, "variant": "ideal", "commit3": ["not_addressed", "evasive", "not_addressed", "not_addressed", null, null, "committed", "not_addressed", null, "evasive", null]}
+{"i": 51, "variant": "plain", "commit3": ["committed", "committed", "not_addressed", "evasive", null, null, "committed", "committed", null, "committed", null]}
+{"i": 52, "variant": "ideal", "commit3": ["committed", "not_addressed", "committed", null, null, "committed", null, null, null, "committed", null, "committed", null]}
+{"i": 52, "variant": "plain", "commit3": ["evasive", "committed", "evasive", null, null, "committed", null, null, null, "committed", null, "committed", null]}
+{"i": 52, "variant": "numpert", "commit3": ["committed", "committed", "committed", null, null, "committed", null, null, null, "committed", null, "committed", null]}
+{"i": 52, "variant": "numsub", "commit3": ["committed", "committed", "committed", null, null, "committed", null, null, null, "committed", null, "committed", null]}
+{"i": 53, "variant": "ideal", "commit3": ["committed", "committed", "not_addressed", "not_addressed", null, null, null, "committed", null, null, "contradicted", null, "contradicted", "contradicted", null]}
+{"i": 53, "variant": "plain", "commit3": ["evasive", "evasive", "evasive", "not_addressed", null, null, null, "committed", null, null, "evasive", null, "not_addressed", "not_addressed", null]}
+{"i": 54, "variant": "ideal", "commit3": ["not_addressed", "not_addressed", null, "not_addressed", "not_addressed", "not_addressed", "not_addressed", "not_addressed", null, null, "not_addressed", null]}
+{"i": 54, "variant": "plain", "commit3": ["committed", "committed", null, "evasive", "committed", "committed", "committed", "not_addressed", null, null, "committed", null]}
+{"i": 55, "variant": "ideal", "commit3": ["committed", null, "committed", null, "committed", "committed", "committed", null]}
+{"i": 55, "variant": "plain", "commit3": ["committed", null, "committed", null, "committed", "committed", "committed", null]}
+{"i": 56, "variant": "ideal", "commit3": [null, null, "not_addressed", null, null, "not_addressed", null, "evasive", null, null, "evasive", "committed", "not_addressed", "evasive", null, "not_addressed", "evasive", null]}
+{"i": 56, "variant": "plain", "commit3": [null, null, "committed", null, null, "evasive", null, "committed", null, null, "committed", "evasive", "committed", "not_addressed", null, "committed", "committed", null]}
+{"i": 57, "variant": "ideal", "commit3": ["evasive", "not_addressed", "not_addressed", null, null, null, null, null, null, null]}
+{"i": 57, "variant": "plain", "commit3": ["committed", "committed", "committed", null, null, null, null, null, null, null]}
+{"i": 57, "variant": "numpert", "commit3": ["contradicted", "contradicted", "committed", null, null, null, null, null, null, null]}
+{"i": 57, "variant": "numsub", "commit3": ["committed", "committed", "committed", null, null, null, null, null, null, null]}
+{"i": 58, "variant": "ideal", "commit3": ["evasive", "committed", "evasive", "evasive", "committed", "not_addressed", "not_addressed", null, null, null, "not_addressed", "not_addressed", "committed", "evasive", "evasive", "not_addressed", null, null, null, "not_addressed"]}
+{"i": 58, "variant": "plain", "commit3": ["committed", "committed", "committed", "committed", "not_addressed", "not_addressed", "evasive", null, null, null, "evasive", "committed", "evasive", "evasive", "contradicted", "committed", null, null, null, "evasive"]}
+{"i": 58, "variant": "numpert", "commit3": ["committed", "committed", "committed", "committed", "not_addressed", "evasive", "contradicted", null, null, null, "not_addressed", "committed", "committed", "evasive", "contradicted", "evasive", null, null, null, "not_addressed"]}
+{"i": 58, "variant": "numsub", "commit3": ["committed", "committed", "committed", "committed", "not_addressed", "not_addressed", "contradicted", null, null, null, "committed", "committed", "evasive", "evasive", "not_addressed", "committed", null, null, null, "contradicted"]}
+{"i": 59, "variant": "ideal", "commit3": ["committed", "evasive", "committed", "committed", null, "committed", null, null, null, null, "evasive", null, null, null, null, "committed", null, null]}
+{"i": 59, "variant": "plain", "commit3": ["evasive", "committed", "committed", "evasive", null, "evasive", null, null, null, null, "committed", null, null, null, null, "committed", null, null]}
+{"i": 59, "variant": "numpert", "commit3": ["not_addressed", "evasive", "committed", "committed", null, "committed", null, null, null, null, "committed", null, null, null, null, "committed", null, null]}
+{"i": 59, "variant": "numsub", "commit3": ["evasive", "committed", "committed", "evasive", null, null, null, null, null, null, null, null, null, null, null, null, null, null]}
+{"i": 60, "variant": "ideal", "commit3": ["evasive", "evasive", "not_addressed", null, null, null, null, null, null, null, null, null, null]}
+{"i": 60, "variant": "plain", "commit3": ["evasive", "evasive", "evasive", null, null, null, null, null, null, null, null, null, null]}
+{"i": 61, "variant": "ideal", "commit3": ["evasive", "not_addressed", "evasive", "evasive", "evasive", null, null, null, null, null, "evasive", null, null, "committed", null]}
+{"i": 61, "variant": "plain", "commit3": ["not_addressed", "not_addressed", "committed", "evasive", "evasive", null, null, null, null, null, "committed", null, null, "committed", null]}
+{"i": 62, "variant": "ideal", "commit3": [null, "not_addressed", "not_addressed", null, null, "not_addressed", null, null, null, "not_addressed", null, "not_addressed", null, "not_addressed", null]}
+{"i": 62, "variant": "plain", "commit3": [null, "committed", "committed", null, null, "evasive", null, null, null, "committed", null, "committed", null, "committed", null]}
+{"i": 63, "variant": "ideal", "commit3": ["not_addressed", null, "not_addressed", "not_addressed", "evasive", "not_addressed", null, null, null, null]}
+{"i": 63, "variant": "plain", "commit3": ["committed", null, "committed", "committed", "committed", "committed", null, null, null, null]}
+{"i": 63, "variant": "numpert", "commit3": ["committed", null, "committed", "contradicted", "committed", "committed", null, null, null, null]}
+{"i": 63, "variant": "numsub", "commit3": ["committed", null, "committed", "committed", "committed", "committed", null, null, null, null]}
+{"i": 64, "variant": "ideal", "commit3": [null, "evasive", null, null, "evasive", "committed", null, "evasive", "evasive", "not_addressed", null, null, null, null, null, "evasive", "committed", null, null, null]}
+{"i": 64, "variant": "plain", "commit3": [null, "evasive", null, null, "evasive", "committed", null, "committed", "committed", "not_addressed", null, null, null, null, null, "committed", "committed", null, null, null]}
+{"i": 65, "variant": "ideal", "commit3": [null, "committed", "committed", "committed", "committed", "committed", null, null, null, "not_addressed", "committed", "evasive", "not_addressed", "not_addressed", null]}
+{"i": 65, "variant": "plain", "commit3": [null, "committed", "committed", "evasive", "not_addressed", "committed", null, null, null, "evasive", "committed", "evasive", "committed", "committed", null]}
+{"i": 65, "variant": "numpert", "commit3": [null, "committed", "committed", "evasive", "not_addressed", "committed", null, null, null, "committed", "committed", "committed", "contradicted", "committed", null]}
+{"i": 65, "variant": "numsub", "commit3": [null, "committed", "committed", "evasive", "not_addressed", "committed", null, null, null, "committed", "committed", "committed", "contradicted", "committed", null]}
+{"i": 66, "variant": "ideal", "commit3": ["evasive", "evasive", "evasive", "not_addressed", null, null, null, null, "not_addressed", null]}
+{"i": 66, "variant": "plain", "commit3": ["evasive", "committed", "committed", "committed", null, null, null, null, "contradicted", null]}
+{"i": 66, "variant": "numpert", "commit3": ["committed", "committed", "committed", "committed", null, null, null, null, "contradicted", null]}
+{"i": 66, "variant": "numsub", "commit3": ["committed", "committed", "committed", "committed", null, null, null, null, "contradicted", null]}
+{"i": 67, "variant": "ideal", "commit3": ["evasive", "committed", null, "committed", "evasive", "committed", null, null, "committed", "committed", "committed", null, "committed", "evasive", null]}
+{"i": 67, "variant": "plain", "commit3": ["committed", "evasive", null, "committed", "evasive", "committed", null, null, "committed", "committed", "committed", null, "committed", "committed", null]}
+{"i": 67, "variant": "numpert", "commit3": ["evasive", "evasive", null, "committed", "evasive", "committed", null, null, "committed", "committed", "committed", null, "contradicted", "evasive", null]}
+{"i": 67, "variant": "numsub", "commit3": ["committed", "evasive", null, "committed", "evasive", "committed", null, null, "committed", "evasive", "committed", null, "committed", "committed", null]}
+{"i": 68, "variant": "ideal", "commit3": ["committed", "evasive", null, "evasive", "not_addressed", null, "committed", null]}
+{"i": 68, "variant": "plain", "commit3": ["committed", "committed", null, "not_addressed", "not_addressed", null, "committed", null]}
+{"i": 68, "variant": "numpert", "commit3": ["committed", "committed", null, "committed", "evasive", null, "contradicted", null]}
+{"i": 68, "variant": "numsub", "commit3": ["committed", "committed", null, "not_addressed", "not_addressed", null, "committed", null]}
+{"i": 69, "variant": "ideal", "commit3": ["committed", null, "committed", "committed", "committed", "evasive", null, null, "committed", "evasive", null, null, null]}
+{"i": 69, "variant": "plain", "commit3": ["committed", null, "evasive", "committed", "committed", "evasive", null, null, "evasive", "committed", null, null, null]}
+{"i": 69, "variant": "numpert", "commit3": ["committed", null, "evasive", "committed", "committed", "evasive", null, null, "evasive", "committed", null, null, null]}
+{"i": 69, "variant": "numsub", "commit3": ["committed", null, "not_addressed", "committed", "committed", "evasive", null, null, "evasive", "committed", null, null, null]}
+{"i": 70, "variant": "ideal", "commit3": [null, null, "evasive", null, null, null, null, null, "evasive", null, null, null]}
+{"i": 70, "variant": "plain", "commit3": [null, null, "evasive", null, null, null, null, null, "evasive", null, null, null]}
+{"i": 71, "variant": "ideal", "commit3": ["evasive", "committed", "evasive", null, null, "evasive", "committed", "committed", "evasive", null, null, null, null]}
+{"i": 71, "variant": "plain", "commit3": ["committed", "committed", "committed", null, null, "committed", "committed", "committed", "not_addressed", null, null, null, null]}
+{"i": 72, "variant": "ideal", "commit3": [null, null, null, null, null, null, "committed", null]}
+{"i": 72, "variant": "plain", "commit3": [null, null, null, null, null, null, "committed", null]}
+{"i": 73, "variant": "ideal", "commit3": ["committed", "committed", null, null, "evasive", "evasive", "committed", null, null]}
+{"i": 73, "variant": "plain", "commit3": ["committed", "committed", null, null, "not_addressed", "evasive", "committed", null, null]}
+{"i": 73, "variant": "numpert", "commit3": ["committed", "committed", null, null, "not_addressed", "evasive", "committed", null, null]}
+{"i": 73, "variant": "numsub", "commit3": ["committed", "committed", null, null, "not_addressed", "committed", "committed", null, null]}
+{"i": 74, "variant": "ideal", "commit3": [null, "committed", "not_addressed", "committed", "not_addressed", "evasive", "committed", null]}
+{"i": 74, "variant": "plain", "commit3": [null, "committed", "committed", "evasive", "evasive", "committed", "committed", null]}
+{"i": 74, "variant": "numpert", "commit3": [null, "committed", "committed", "evasive", "evasive", "committed", "committed", null]}
+{"i": 74, "variant": "numsub", "commit3": [null, "committed", "committed", "evasive", "evasive", "committed", "committed", null]}
+{"i": 75, "variant": "ideal", "commit3": [null, "committed", "committed", "committed", "evasive", "committed", "committed", null, null, null, "committed", "evasive", null, null, null, "not_addressed", null, "committed", null]}
+{"i": 75, "variant": "plain", "commit3": [null, "committed", "evasive", "committed", "committed", "committed", "committed", null, null, null, "committed", "evasive", null, null, null, "not_addressed", null, "committed", null]}
+{"i": 75, "variant": "numpert", "commit3": [null, "committed", "not_addressed", "committed", "committed", "committed", "committed", null, null, null, "committed", "contradicted", null, null, null, "not_addressed", null, "contradicted", null]}
+{"i": 75, "variant": "numsub", "commit3": [null, "committed", "not_addressed", "committed", "committed", "committed", "committed", null, null, null, "committed", "contradicted", null, null, null, "not_addressed", null, "contradicted", null]}
+{"i": 76, "variant": "ideal", "commit3": ["not_addressed", "not_addressed", "not_addressed", "not_addressed", "not_addressed", null, null, "not_addressed", "not_addressed", "not_addressed", "not_addressed", "not_addressed", "not_addressed", null, "not_addressed", null]}
+{"i": 76, "variant": "plain", "commit3": ["not_addressed", "not_addressed", "evasive", "evasive", "committed", null, null, "committed", "evasive", "committed", "not_addressed", "evasive", "evasive", null, "evasive", null]}
+{"i": 76, "variant": "numpert", "commit3": ["not_addressed", "evasive", "not_addressed", "evasive", "committed", null, null, "committed", "evasive", "committed", "not_addressed", "committed", "evasive", null, "evasive", null]}
+{"i": 76, "variant": "numsub", "commit3": ["not_addressed", "not_addressed", "evasive", "evasive", "committed", null, null, "not_addressed", "evasive", "committed", "not_addressed", "evasive", "not_addressed", null, "not_addressed", null]}
+{"i": 77, "variant": "ideal", "commit3": ["evasive", "committed", null, "not_addressed", null, "committed", "committed", null, "contradicted", "committed", null]}
+{"i": 77, "variant": "plain", "commit3": ["not_addressed", "evasive", null, "evasive", null, "committed", "committed", null, "committed", "committed", null]}
+{"i": 77, "variant": "numpert", "commit3": ["not_addressed", "evasive", null, "evasive", null, "committed", "committed", null, "contradicted", "committed", null]}
+{"i": 77, "variant": "numsub", "commit3": ["not_addressed", "evasive", null, "evasive", null, "committed", "committed", null, "committed", "committed", null]}
+{"i": 78, "variant": "ideal", "commit3": ["evasive", "not_addressed", null, null, "committed", "committed", null, "contradicted", null]}
+{"i": 78, "variant": "plain", "commit3": ["committed", "evasive", null, null, "committed", "committed", null, "committed", null]}
+{"i": 78, "variant": "numpert", "commit3": ["committed", "committed", null, null, "committed", "committed", null, "contradicted", null]}
+{"i": 78, "variant": "numsub", "commit3": ["committed", "evasive", null, null, "committed", "committed", null, "contradicted", null]}
+{"i": 79, "variant": "ideal", "commit3": ["not_addressed", "not_addressed", null, null, null, null, null, null]}
+{"i": 79, "variant": "plain", "commit3": ["committed", "committed", null, null, null, null, null, null]}
+{"i": 80, "variant": "ideal", "commit3": [null, null, "not_addressed", null, "not_addressed", "evasive", null, null]}
+{"i": 80, "variant": "plain", "commit3": [null, null, "not_addressed", null, "committed", "evasive", null, null]}
+{"i": 80, "variant": "numpert", "commit3": [null, null, "not_addressed", null, "contradicted", "committed", null, null]}
+{"i": 80, "variant": "numsub", "commit3": [null, null, "not_addressed", null, "contradicted", "committed", null, null]}
+{"i": 81, "variant": "ideal", "commit3": [null, "evasive", null, "committed", "not_addressed", null, null, null, "committed", "committed", null]}
+{"i": 81, "variant": "plain", "commit3": [null, "committed", null, "committed", "not_addressed", null, null, null, "committed", "committed", null]}
+{"i": 81, "variant": "numpert", "commit3": [null, "committed", null, "committed", "not_addressed", null, null, null, "committed", "committed", null]}
+{"i": 81, "variant": "numsub", "commit3": [null, "committed", null, "committed", "not_addressed", null, null, null, "committed", "committed", null]}
+{"i": 82, "variant": "ideal", "commit3": [null, null, null, null, "not_addressed", "not_addressed", "not_addressed", "not_addressed", null, "not_addressed", null]}
+{"i": 82, "variant": "plain", "commit3": [null, null, null, null, "committed", "committed", "evasive", "committed", null, "committed", null]}
+{"i": 82, "variant": "numpert", "commit3": [null, null, null, null, "committed", "committed", "not_addressed", "committed", null, "contradicted", null]}
+{"i": 82, "variant": "numsub", "commit3": [null, null, null, null, "committed", "committed", "not_addressed", "committed", null, "not_addressed", null]}
+{"i": 83, "variant": "ideal", "commit3": ["committed", "committed", "committed", "committed", null, "not_addressed", null, "not_addressed", "committed", null]}
+{"i": 83, "variant": "plain", "commit3": ["committed", "committed", "committed", "committed", null, "not_addressed", null, "not_addressed", "committed", null]}
+{"i": 84, "variant": "ideal", "commit3": [null, "committed", null, null, "not_addressed", null, "not_addressed", null, null]}
+{"i": 84, "variant": "plain", "commit3": [null, "committed", null, null, "not_addressed", null, "not_addressed", null, null]}
+{"i": 85, "variant": "ideal", "commit3": ["committed", null, null, null, null, "not_addressed", "committed", "committed", null, null, null, "committed", "committed", null]}
+{"i": 85, "variant": "plain", "commit3": ["committed", null, null, null, null, "committed", "committed", "evasive", null, null, null, "committed", "committed", null]}
+{"i": 85, "variant": "numpert", "commit3": ["committed", null, null, null, null, "contradicted", "committed", "committed", null, null, null, "contradicted", "contradicted", null]}
+{"i": 85, "variant": "numsub", "commit3": ["committed", null, null, null, null, "not_addressed", "committed", "committed", null, null, null, "contradicted", "committed", null]}
+{"i": 86, "variant": "ideal", "commit3": ["committed", "committed", null, null, "evasive", "evasive", "not_addressed", "not_addressed", null, "committed", "not_addressed", null, "committed", "committed", null]}
+{"i": 86, "variant": "plain", "commit3": ["evasive", "evasive", null, null, "evasive", "evasive", "not_addressed", "not_addressed", null, "committed", "not_addressed", null, "committed", "committed", null]}
+{"i": 86, "variant": "numpert", "commit3": ["not_addressed", "evasive", null, null, "evasive", "evasive", "not_addressed", "not_addressed", null, "committed", "evasive", null, "committed", "committed", null]}
+{"i": 86, "variant": "numsub", "commit3": ["evasive", "evasive", null, null, "evasive", "evasive", "not_addressed", "not_addressed", null, "committed", "evasive", null, "committed", "committed", null]}
+{"i": 87, "variant": "ideal", "commit3": [null, null, null, "evasive", "committed", "committed", null, null, null, "evasive", "committed", "committed", null, null, "committed", "committed", null]}
+{"i": 87, "variant": "plain", "commit3": [null, null, null, "committed", "committed", "committed", null, null, null, "evasive", "committed", "committed", null, null, "committed", "committed", null]}
+{"i": 87, "variant": "numpert", "commit3": [null, null, null, "committed", "contradicted", "committed", null, null, null, "evasive", "committed", "committed", null, null, "contradicted", "committed", null]}
+{"i": 87, "variant": "numsub", "commit3": [null, null, null, "committed", "committed", "committed", null, null, null, "evasive", "committed", "committed", null, null, "contradicted", "committed", null]}
+{"i": 88, "variant": "ideal", "commit3": ["not_addressed", "evasive", "evasive", "not_addressed", "evasive", null, null, null, null, null, "not_addressed", "evasive", "evasive", null, null, null]}
+{"i": 88, "variant": "plain", "commit3": ["committed", "committed", "committed", "not_addressed", "not_addressed", null, null, null, null, null, "committed", "committed", "committed", null, null, null]}
+{"i": 88, "variant": "numpert", "commit3": ["committed", "committed", "evasive", "not_addressed", "not_addressed", null, null, null, null, null, "committed", "committed", "committed", null, null, null]}
+{"i": 88, "variant": "numsub", "commit3": ["committed", "committed", "evasive", "not_addressed", "not_addressed", null, null, null, null, null, "committed", "committed", "committed", null, null, null]}
+{"i": 89, "variant": "ideal", "commit3": ["contradicted", null, null, null, "contradicted", "not_addressed", null, null, "not_addressed", "contradicted", null, null, "contradicted"]}
+{"i": 89, "variant": "plain", "commit3": ["committed", null, null, null, "committed", "not_addressed", null, null, "not_addressed", "evasive", null, null, "evasive"]}
+{"i": 90, "variant": "ideal", "commit3": ["not_addressed", null, "evasive", null, null, "committed", null, null, null, "committed", "contradicted", null]}
+{"i": 90, "variant": "plain", "commit3": ["not_addressed", null, "committed", null, null, "committed", null, null, null, "committed", "not_addressed", null]}
+{"i": 91, "variant": "ideal", "commit3": ["committed", "committed", "committed", "committed", "committed", "committed", "not_addressed", "committed", null]}
+{"i": 91, "variant": "plain", "commit3": ["evasive", "committed", "committed", "evasive", "committed", "committed", "not_addressed", "committed", null]}
+{"i": 92, "variant": "ideal", "commit3": [null, null, "not_addressed", "committed", "not_addressed", null, "evasive", null, "evasive", null, null, null, "committed"]}
+{"i": 92, "variant": "plain", "commit3": [null, null, "committed", "committed", "committed", null, "evasive", null, "not_addressed", null, null, null, "committed"]}
+{"i": 92, "variant": "numpert", "commit3": [null, null, "committed", "committed", "committed", null, "evasive", null, "not_addressed", null, null, null, "committed"]}
+{"i": 92, "variant": "numsub", "commit3": [null, null, "committed", "committed", "committed", null, "evasive", null, "not_addressed", null, null, null, "committed"]}
+{"i": 93, "variant": "ideal", "commit3": [null, null, "evasive", "not_addressed", "not_addressed", "not_addressed", "not_addressed", null, null, null, "not_addressed", "not_addressed", null, "not_addressed", null]}
+{"i": 93, "variant": "plain", "commit3": [null, null, "committed", "committed", "evasive", "evasive", "evasive", null, null, null, "committed", "committed", null, "committed", null]}
+{"i": 94, "variant": "ideal", "commit3": [null, null, null, "committed", null, null, null, "evasive", null, "committed", null, "not_addressed", "committed", "committed", "committed", null]}
+{"i": 94, "variant": "plain", "commit3": [null, null, null, "committed", null, null, null, "contradicted", null, "contradicted", null, "not_addressed", "committed", "committed", "committed", null]}
+{"i": 94, "variant": "numpert", "commit3": [null, null, null, "committed", null, null, null, "contradicted", null, "contradicted", null, "not_addressed", "committed", "contradicted", "committed", null]}
+{"i": 94, "variant": "numsub", "commit3": [null, null, null, "committed", null, null, null, "contradicted", null, "evasive", null, "not_addressed", "committed", "contradicted", "committed", null]}
+{"i": 95, "variant": "ideal", "commit3": ["committed", "committed", "not_addressed", null, "evasive", "committed", "committed", "not_addressed", null, null, null, null, null, null]}
+{"i": 95, "variant": "plain", "commit3": ["committed", "committed", "evasive", null, "evasive", "not_addressed", "committed", "committed", null, null, null, null, null, null]}
+{"i": 96, "variant": "ideal", "commit3": [null, "committed", null, null, null, "not_addressed", null, null, null, null, "committed", "not_addressed", null, null]}
+{"i": 96, "variant": "plain", "commit3": [null, "committed", null, null, null, "not_addressed", null, null, null, null, "evasive", "committed", null, null]}
+{"i": 97, "variant": "ideal", "commit3": ["contradicted", "contradicted", "evasive", null, "committed", null, "not_addressed", "committed", "not_addressed", null, null, null, null, null, "not_addressed", null]}
+{"i": 97, "variant": "plain", "commit3": ["committed", "evasive", "committed", null, "committed", null, "not_addressed", "committed", "committed", null, null, null, null, null, "committed", null]}
+{"i": 98, "variant": "ideal", "commit3": [null, "committed", "not_addressed", null, null, null, "not_addressed", "committed", "evasive", "committed", "not_addressed", null, null, null, "committed", null]}
+{"i": 98, "variant": "plain", "commit3": [null, null, null, null, null, null, null, null, "evasive", "not_addressed", "committed", null, null, null, "committed", null]}
+{"i": 98, "variant": "numpert", "commit3": [null, "committed", "committed", null, null, null, "committed", "not_addressed", "committed", "not_addressed", "committed", null, null, null, "committed", null]}
+{"i": 98, "variant": "numsub", "commit3": [null, "committed", "evasive", null, null, null, "committed", "not_addressed", "committed", "not_addressed", "committed", null, null, null, "committed", null]}
+{"i": 99, "variant": "ideal", "commit3": ["not_addressed", null, "committed", "evasive", "not_addressed", null, null, null]}
+{"i": 99, "variant": "plain", "commit3": ["committed", null, "committed", "evasive", "evasive", null, null, null]}

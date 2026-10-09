@@ -1,0 +1,6 @@
+Sonnet COMMIT judge: contradicted fire rate ideal    0.15 (n=100)
+Sonnet COMMIT judge: contradicted fire rate plain    0.09 (n=100)
+Sonnet COMMIT judge: contradicted fire rate numpert  0.60 (n=52)
+Sonnet COMMIT judge: contradicted fire rate numsub   0.48 (n=52)
+  paired: numpert fires & plain doesn't 0.44; plain fires & numpert doesn't 0.00
+  paired: numsub fires & plain doesn't 0.33; plain fires & numsub doesn't 0.00
