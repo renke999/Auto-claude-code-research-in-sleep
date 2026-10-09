@@ -301,3 +301,14 @@ _（Phase 5 填写）_
   - B2（关键子群）：hedging/context-seeking 池中该差值的点估计 > −0.02；**若不满足则在任何 RL 之前把 h 从 0 调向 0.5**（reviewer 给出的 kill 规则）；
   - 同时报告 h ∈ {0, 0.5, 1} × c ∈ {−1, −3} 的完整网格、P(best) 与两两一致性。
 
+### 方法评审 Round 1（refine，同族）与预登记：Pilot 9（v3 判定；在运行前写入）
+- 方法评审：**6.3/10，REVISE**，无漂移。三个 critical：(1) v2 COMMIT 把"诚实的不确定性"算作 committed，RL 下"大概 500 mg，也可能 1000 mg"会拿满分，逃生通道换个形式重开；(2) −3w 乘在最不稳定的标签上（v1 数据中 contradicted 的同文本重现率仅 36%，且在 23% 的医师理想回答上触发）；(3) 需要决策论主干：单条目上 承诺/带真值的选项菜单/省略 三种动作，承诺优于含糊当且仅当 **p ≥ τ(h,c) = (h−c)/(1−c)**——presence（h=1,c=0）、ConRub（h=1,c=−1）、h=1,c=−3 的 τ 都是 1（含糊弱占优），stance（h=0,c=−3）为 0.75，h=0.5 回退为 0.875 → **"只有 h ≤ 0 时真实性惩罚才安全"**。
+- **v3 判定**（据此修订）：COMMIT 只用于内容条目（axis:accuracy / axis:completeness，占正向条目 78%）；内容条目上"在备选之间的不确定"算 evasive，条件式建议仅当给出"条件→行动"规则才算 committed；行为条目（context_awareness / communication / instruction_following）与所有负向条目只用 presence（医师自己写的"承认不确定/索取信息"条目负责给合理的不确定定价）；contradicted 必须给出与回答原文匹配的引文，并对被标记条目复问一次，两次一致才计入。
+- **Pilot 9 预登记的 RL 前置闸门**（100 个 prompt，变体 + 新探针 uncwrap = "大概 X，也可能 Y" 式改写、uncwrap_wrong = 对错数值版本做同样改写；20 个 prompt 同文本重判）：
+  - G1 稳定性：rep0 中被标 contradicted 的内容条目，在 rep1 中仍为 contradicted 的比例 ≥ 0.60；
+  - G2 特异性：医师理想回答上 contradicted 的触发率（≥1 个/回答）≤ plain；
+  - G3 漏洞关闭：uncwrap 相对 plain 的 Δ(v3, h=0,c=−3) − Δ(presence) ≤ −0.05 且 95% CI 不含 0；
+  - G4 真实性：numsub 被扣分比例 > 同文本重判误罚率；
+  - 另报告各给分规则的经验 τ 与"含糊错误 vs 承诺错误"（uncwrap_wrong vs numpert）的差。
+  - 若 G1 或 G2 不通过：在任何 RL 之前，把 c 从 −3 降到 −1（或改用更强的训练 judge），并重新测量。
+

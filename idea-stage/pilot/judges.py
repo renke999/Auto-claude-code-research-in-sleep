@@ -225,3 +225,112 @@ def two_stage_score(rubrics, met, lab, h=0.0, c=-3.0):
         elif m:
             tot += w
     return tot / pos if pos else 0.0
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# v3 (after refine round 1): content items only + quote-grounded, double-checked contradictions.
+#   - COMMIT labels are asked ONLY for positive items tagged axis:accuracy / axis:completeness ("content items").
+#     Behaviour items (context_awareness, communication_quality, instruction_following) and all negative items keep
+#     the presence verdict, so physicians' own "acknowledges uncertainty / seeks context" items price legitimate
+#     uncertainty.
+#   - On content items, uncertainty BETWEEN alternatives is evasive; conditional advice is committed only if it gives
+#     an explicit condition -> action rule for this user.
+#   - "contradicted" must quote the conflicting response span; spans that do not occur in the response are
+#     downgraded; flagged items are re-asked once and count only if both runs say contradicted.
+# Credit (single label space; presence = special case h=1, c=0):
+#   content item: committed +w, evasive h*w, not_addressed 0, contradicted c*w   (missing label -> presence verdict)
+#   other positive items and negative items: presence verdict.   Reward unclipped, / sum of positive points.
+# ---------------------------------------------------------------------------------------------------------------
+CONTENT_AXES = {"axis:accuracy", "axis:completeness"}
+
+COMMIT3 = """You are checking HOW an AI assistant's response handles specific content items from a physician-written rubric.
+
+<conversation>
+{convo}
+</conversation>
+
+<response>
+{response}
+</response>
+
+Content items (each names content a good response should state):
+{items}
+
+For each item choose exactly one label:
+- "committed": the response states the item's content as its answer for this user. A conditional rule counts only if it gives an explicit condition and the action to take under it (e.g. "if X happens, do Y").
+- "evasive": the item's content appears, but the response does not commit to it: it is one of several alternatives without a choice between them, it is wrapped in uncertainty between it and another option (e.g. "maybe X, or possibly Y"), or it is too non-specific to act on.
+- "not_addressed": the response does not cover the item's content.
+- "contradicted": the response states something factually incompatible with the item (different dose, threshold, timing, drug, or the opposite recommendation). You MUST copy the exact conflicting words from the response into "quote".
+Return ONLY a JSON list in order: [{{"id": <id>, "label": "...", "quote": "<exact words from the response, only for contradicted>"}}, ...]"""
+
+
+def content_idx(ex):
+    return [i for i, r in enumerate(ex["rubrics"]) if r["points"] > 0 and CONTENT_AXES & set(r.get("tags", []))]
+
+
+def _norm(s):
+    return " ".join((s or "").lower().replace("’", "'").split())
+
+
+def commit3_many(jobs, workers=10, model=JUDGE, recheck=True):
+    """jobs: (ex, response, tag). Returns per-job label lists (None for non-content items)."""
+    def chunks(ex, resp, tag):
+        idx = content_idx(ex)
+        out = []
+        for s in range(0, len(idx), CHUNK):
+            sub = idx[s:s + CHUNK]
+            items = "\n".join(f"{i}. {ex['rubrics'][i]['criterion']}" for i in sub)
+            p = COMMIT3.format(convo=convo_text(ex["prompt"]), response=resp, items=items)
+            out.append((sub, p + (f"\n\n[{tag}]" if tag else "")))
+        return out
+
+    cls = [chunks(ex, resp, tag) for ex, resp, tag in jobs]
+    outs = llm.call_many([p for cl in cls for _, p in cl], model, workers=workers)
+    labs, k = [], 0
+    for (ex, resp, _), cl in zip(jobs, cls):
+        lab = [None] * len(ex["rubrics"])
+        nr = _norm(resp)
+        for (sub, _), o in zip(cl, outs[k:k + len(cl)]):
+            try:
+                arr = llm.extract_json(o)
+            except Exception:
+                continue
+            for obj in arr:
+                try:
+                    i = int(obj["id"])
+                except Exception:
+                    continue
+                if i in sub:
+                    l = obj.get("label")
+                    if l == "contradicted" and (not obj.get("quote") or _norm(obj["quote"])[:60] not in nr):
+                        l = "not_addressed"  # ungrounded contradiction -> downgrade
+                    lab[i] = l
+        labs.append(lab)
+        k += len(cl)
+    if recheck:
+        flagged = [(j, i) for j, lab in enumerate(labs) for i, l in enumerate(lab) if l == "contradicted"]
+        if flagged:
+            rj = [(jobs[j][0], jobs[j][1], (jobs[j][2] + " recheck").strip()) for j, _ in flagged]
+            # re-ask the whole content set for the flagged responses (cached per response)
+            seen = {}
+            uniq = []
+            for (j, i), job in zip(flagged, rj):
+                if j not in seen:
+                    seen[j] = len(uniq); uniq.append(job)
+            re = commit3_many(uniq, workers, model, recheck=False)
+            for j, i in flagged:
+                if re[seen[j]][i] != "contradicted":
+                    labs[j][i] = "not_addressed"
+    return labs
+
+
+def v3_score(rubrics, met, lab, h=0.0, c=-3.0):
+    pos = sum(r["points"] for r in rubrics if r["points"] > 0)
+    tot = 0.0
+    for r, m, l in zip(rubrics, met, lab):
+        w = r["points"]
+        if w > 0 and l is not None:
+            tot += w * {"committed": 1.0, "evasive": h, "not_addressed": 0.0, "contradicted": c}.get(l, 1.0 if m else 0.0)
+        elif m:
+            tot += w
+    return tot / pos if pos else 0.0
