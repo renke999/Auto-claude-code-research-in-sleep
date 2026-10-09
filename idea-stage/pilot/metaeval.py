@@ -41,7 +41,8 @@ def load_pools(n=None, seed=0, need_ideal=True, single_turn=False, min_spread=0.
             gold[cid] = sum(sum(r["binary_labels"]) / len(r["binary_labels"]) for r in rows) / len(rows)
         if max(gold.values()) - min(gold.values()) < min_spread:
             continue
-        pools.append({"ex": ex, "completions": {c: text[c] for c in comps}, "gold": gold})
+        clusters = sorted({r["category"] for rows in comps.values() for r in rows})
+        pools.append({"ex": ex, "completions": {c: text[c] for c in comps}, "gold": gold, "clusters": clusters})
     random.Random(seed).shuffle(pools)
     return pools[:n] if n else pools
 

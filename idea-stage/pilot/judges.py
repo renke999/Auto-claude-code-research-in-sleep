@@ -144,3 +144,84 @@ def ablation_score(rubrics, st, hedged=0.0, contra=-3.0):
         else:
             tot += r["points"] * {"committed": 1.0, "hedged": 0.5}.get(s, 0.0)
     return tot / pos if pos else 0.0
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# v2 (after review round 1): two-stage stance credit.
+#   Stage 1 = the unchanged PRESENCE judge (all items).
+#   Stage 2 = COMMIT judge on POSITIVE items only (fixes the negative-item polarity bug), with definitions that
+#   separate evasive alternatives from appropriate conditional advice, and example wording that does not reuse
+#   the phrases of the hedge-rewrite template.
+# Credit (positive item, weight w): contradicted -> c*w (any presence verdict); presence met & evasive -> h*w;
+#   presence met otherwise -> +w; presence unmet & not contradicted -> 0. Negative items: presence verdict only.
+# ---------------------------------------------------------------------------------------------------------------
+COMMIT = """You are checking HOW an AI assistant's response handles specific rubric items written by physicians.
+
+<conversation>
+{convo}
+</conversation>
+
+<response>
+{response}
+</response>
+
+Rubric items (each describes something a good response should do):
+{items}
+
+For each item choose exactly one label:
+- "committed": the response tells this user what to do / what is the case for the item's content, in a form the user can act on. Conditional guidance that says what to do under which circumstance (e.g. "if your temperature stays above 39 °C for two days, see a doctor"), honest statements of uncertainty, and questions asking the user for missing information all count as committed.
+- "evasive": the item's content appears, but only inside a menu of alternatives with no indication of which one applies to this user or how to choose between them, or so non-specifically that the user could not act on it.
+- "not_addressed": the response does not cover the item's content.
+- "contradicted": the response states or recommends something factually incompatible with the item (e.g. a different dose, threshold, timing, drug, or the opposite recommendation).
+Return ONLY a JSON list in order: [{{"id": <id>, "label": "committed"|"evasive"|"not_addressed"|"contradicted"}}, ...]"""
+
+
+def commit_prompts(ex, response, tag=""):
+    r = ex["rubrics"]
+    pos = [i for i, x in enumerate(r) if x["points"] > 0]
+    out = []
+    for s in range(0, len(pos), CHUNK):
+        idx = pos[s:s + CHUNK]
+        items = "\n".join(f"{i}. {r[i]['criterion']}" for i in idx)
+        p = COMMIT.format(convo=convo_text(ex["prompt"]), response=response, items=items)
+        out.append((idx, p + (f"\n\n[{tag}]" if tag else "")))
+    return out
+
+
+def commit_many(jobs, workers=16, model=JUDGE):
+    chunk_lists = [commit_prompts(ex, resp, tag) for ex, resp, tag in jobs]
+    flat = [p for cl in chunk_lists for _, p in cl]
+    outs = llm.call_many(flat, model, workers=workers)
+    res, k = [], 0
+    for (ex, _, _), cl in zip(jobs, chunk_lists):
+        lab = [None] * len(ex["rubrics"])
+        for (idx, _), o in zip(cl, outs[k:k + len(cl)]):
+            try:
+                arr = llm.extract_json(o)
+            except Exception:
+                continue
+            for obj in arr:
+                try:
+                    i = int(obj["id"])
+                except Exception:
+                    continue
+                if i in idx:
+                    lab[i] = obj.get("label")
+        res.append(lab)
+        k += len(cl)
+    return res
+
+
+def two_stage_score(rubrics, met, lab, h=0.0, c=-3.0):
+    pos = sum(r["points"] for r in rubrics if r["points"] > 0)
+    tot = 0.0
+    for r, m, l in zip(rubrics, met, lab):
+        w = r["points"]
+        if w > 0:
+            if l == "contradicted":
+                tot += c * w
+            elif m:
+                tot += (h * w) if l == "evasive" else w
+        elif m:
+            tot += w
+    return tot / pos if pos else 0.0

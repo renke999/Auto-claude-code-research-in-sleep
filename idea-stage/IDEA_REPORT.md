@@ -251,3 +251,53 @@ _（Phase 5 填写）_
 | 随机 | 0.731 | — | — |
 - **权衡**：对自然回答，逐条 rubric 携带最多与医师一致的信号；整体 judge 能识破"看过 rubric 的断言列表"（P5：95%），但与医师的一致性更低。→ 两者不能互相替代，提示"rubric 主奖励 + 非逐条的守卫信号"的组合，而非用整体判断取代 rubric。
 
+## External Critical Review
+
+> ⚠️ **跨模型 reviewer 不可用**：ARIS `/research-review` 要求 GPT 系（Codex，`ultra`）reviewer。本容器无 Codex/llm-chat/manual-review，故由一个**独立的同族（Claude）对抗式 reviewer agent** 完成，它直接读取了原始 `pilot/*.jsonl` 与代码并复算。该评审**不能**作为跨模型 receipt（run state 中 research-review 无 `accept`）。完整评审与请求书保存在本地 `.aris/traces/research-review/2026-10-09_run01/`（`.aris/` 被 gitignore，不随仓库推送；结论已全部并入本节）。
+
+### Round 1 结论（mock review 3/10，confidence 4/5；BOTTOM LINE: **PROCEED**）
+
+**被核实的问题（我方错误，已承认）**
+1. **Stance 提示词缺少负向条目的极性规则**（只写在 docstring 里，没进 prompt）。约 37% 的负向条目是"Fails to / Does not mention X"式双重否定，两个 judge 在这些条目上反相关。**把负向条目改用 presence 判定、正向条目保留 stance（h=0, c=−3）后，医师 BoN-4 = 0.865 / 0.736 / 0.757，与 presence（0.864 / 0.765 / 0.745）持平** → Stage B 的劣势主要来自该 bug，而不是"四分类更嘈杂"。
+2. **Stance 提示词有引导性**：hedged 的示例措辞与构造"含糊改写"时用的措辞逐字相同（部分在测模板匹配）；且把"conditionally"算作 hedged，误伤合理的条件式建议。医师理想回答在 24.6% 的正向条目上被标为 hedged，与 disj3（24.7%）相同。
+3. **在医师真正关心不确定性的场景，hedge 状态反而有害**：Stage B 中涉及 hedging / context-seeking 的 105 个池，stance − presence：gold −0.038 [−0.073, −0.003]、P(best) −0.149 [−0.249, −0.054]；其余 95 个池无差异（事后分组，但正是假设预测的子群）。
+4. **τ 结论不成立**：bootstrap 95% CI presence −0.10 [−2.68, 0.64]、stance 0.31 [−0.25, 0.60] 重叠；且只报告了 hedged 版 τ，漏报 disj3 版（−2.10 / 0.10）。
+5. **Pareto 支配论证无特异性**：同一文本重判对自身首判的"弱支配"率就有 53%，plain 支配 ideal 37% → "aware 支配 ideal 47–52%"基本是噪声 + 理想回答弱；"可证明无法修复"只是同义反复。
+6. **选择性报告**：Sonnet 整体判断其实 74.5% 偏好"看过 rubric 的列表"胜过医师理想回答（顺序 plain ≻ aware ≻ ideal），没有任何人类证据表明 aware 列表是坏的；P2 反而显示医师在"增加具体行动、删除填充"，这正是简短承诺式列表在做的事。
+7. **"整体判断与医师一致性更低"不显著**：gold 差 −0.027 [−0.07, +0.018]，且 judge 模型不同（Sonnet vs Haiku）混杂。
+8. **效应被夸大**："P(含糊版 ≥ 理想) 0.80→0.55" 主要是 stance 同样拉低了 plain（0.83→0.68）；含糊特有的差距只从 0.03 增至 0.13；对"并列备选"，按 prompt 级 SD 标准化后 stance 不比 presence 强。
+9. Stage B 只用了 2,531 个可用池中的 198 个，132/200 个池存在并列最佳；数值扰动过于明显（"Fever above 34°F"）；P6 两个数字无落盘文件（已补 `pilot6_controls.py`，数字来自运行输出）；P2b 报的是一致率不是 κ；生成器 = judge（Haiku）。
+
+**站得住的部分**
+- **真实性通道真实存在**（经同文本重判零假设校准）：重判误罚率 presence 0.37 / stance 0.33；错数值变体 0.46 / 0.69；标准化效应 −0.30 SD vs −0.81 SD；新增的 contradicted 标签落在含被改数值的条目或 accuracy 条目上。
+- 含糊改写效应标准化后仍成立（−0.27 vs −0.54 SD）。
+- 静态消融干净：c=−3 时 h=1 → h=0 使含糊惩罚从≈0 变为显著；c=−3 → c=−1 使错数值惩罚减半。
+- 看过 rubric 的列表在两种给分下等量获益（+0.92 SD）：stance 不修复堆砌。
+
+**Reviewer 建议的主贡献（核心假设被"锐化"而非改写）**
+> **只有同时存在 hedge 状态，真实性惩罚才是安全的。** Presence 给分已经会惩罚含糊、却奖励虚张声势（真实性盲区）；加入矛盾惩罚而不给 hedge 定价（ConRub 式），就打开了"用含糊逃避惩罚"的逃生通道（静态数据中 h=1/c=−1 时含糊版 Δ = +0.00）；hedge 状态正是关闭这条通道的部件。这把 hedge 状态从"装饰"变成"必要"，并与 Reward Bias Substitution（2605.27996）直接对接。
+- 证伪条件：若 ConRub 式 RL 相对 presence RL **不**提高 hedged 比例，或 stance RL 在不增加堆砌/遗漏的情况下同时降低矛盾与含糊——则"压力转移"主张不成立。
+
+**框架排序**：(a) 方法框架"安全的真实性惩罚 = 矛盾 −3w + hedge 状态"（前提：修正后的重跑在医师 BoN 上非劣）＞ (b) 诊断优先（新颖性弱于 2605.12474 / 2609.16816）＞ (c) 三通道理论（去掉"可证明"，除非人类把 aware 列表排在 plain 之下，否则去掉 judgment 通道）。
+
+**Results-to-claims 矩阵（最小 RL：A presence / B ConRub 式 h=1,c=−1 / C stance h=0,c=−3；箭头相对 A，由跨族 held-out judge 测量）**
+| 结果 | 允许的主张 |
+|---|---|
+| C：矛盾/错误↓，hedged 比例 ≤ A；B：hedged 比例↑；共识分 C ≥ A − 0.01 | 完整方法主张：hedge 状态使真实性惩罚安全；关闭一个通道会转移压力 |
+| 同上但 B 的 hedging 不上升 | 只有矛盾惩罚有效；hedge 状态的必要性未被证明（ConRub-Med/Kalai 复现 + 诊断） |
+| C：错误↓但遗漏/长度坍塌、共识分下降 | GRPO 弃答/阈值问题主导（2608.00301）；报告负结果，先调 h/c |
+| Presence RL 在该规模下不增加错误具体值或含糊 | 前提不成立；只能主张"静态易感性不能预测 4–8B 的 RL 行为" |
+| C 在训练 judge 上赢、在跨族 judge 上不赢 | judge 过拟合；stance 标签本身可被 hack；放弃方法主张 |
+| 所有臂收敛到断言列表风格 | judgment 通道主导，给分规则是次要的；仅当人类/跨族 judge 认为这些列表劣于基座时才支持该通道 |
+
+### 修正与预登记：Pilot 8（two-stage stance credit；在运行前写入）
+- **修正**：Stage 1 = 原 presence judge（全部条目，判定不变）；Stage 2 = COMMIT judge，**只问正向条目**（消除极性 bug），标签 committed / evasive / not_addressed / contradicted；**条件式建议、诚实的不确定性、向用户索取缺失信息一律算 committed**；示例措辞不复用含糊改写模板的短语。给分：contradicted → c·w（不论 presence）；presence 满足且 evasive → h·w；presence 满足 → +w；否则 0；负向条目只用 presence。
+- **P8-A'（同 100 个 prompt 的变体 + 20 个 prompt 同文本重判）**，新增更隐蔽的数值错误 numsub（×1.5 或 ÷1.5）。预登记：
+  - A1：含糊改写相对 plain 的 Δ(two-stage h=0,c=−3) 比 Δ(presence) 更负，差值 ≤ −0.05 且 95% CI 不含 0；
+  - A2：numsub 被扣分比例高于同文本重判的误罚率（presence 与 two-stage 分别报告）；
+  - A3：医师理想回答被标 evasive 的正向条目比例 ≤ plain 的比例（否则 evasive 定义仍误伤合理建议）。
+- **P8-B'（医师 BoN-4，1000 个池，seed 5，其中 553 个含 hedging/context-seeking 簇）**。预登记：
+  - B1（主要终点，非劣）：two-stage（h=0, c=−3）选中回答的医师分 − presence 的差，95% bootstrap CI 下界 > −0.01；
+  - B2（关键子群）：hedging/context-seeking 池中该差值的点估计 > −0.02；**若不满足则在任何 RL 之前把 h 从 0 调向 0.5**（reviewer 给出的 kill 规则）；
+  - 同时报告 h ∈ {0, 0.5, 1} × c ∈ {−1, −3} 的完整网格、P(best) 与两两一致性。
+
