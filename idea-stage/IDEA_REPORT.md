@@ -9,7 +9,21 @@
 
 ## Executive Summary
 
-_（Phase 5 填写）_
+**推荐方向：Stance credit——"给真实定价时必须同时给承诺定价"。** 逐条 presence 型 rubric 奖励（"提到即得分"）同时奖励含糊与虚张声势；只加真实性惩罚（如 +1/0/−1 三态）又会把优化压力推向含糊。我们只对**内容型** rubric 条目按回答的立场给分（承诺 +w / 含糊 0 / 未覆盖 0 / 矛盾 c\*·w，矛盾须引文 + 复问），行为条目与负向条目保持 presence；c\* 按 judge 的召回/误报标定。
+
+**关键证据（全部为 API-only 静态 pilot，HealthBench，经同文本重判校准；RL 尚未做）**：
+1. **含糊盲区**：把回答改写成"大概 X，也可能 Y"，presence 只降 0.110，stance 降 0.211（v3 − presence = −0.101 [−0.142, −0.060]）。
+2. **真实性盲区**：×3/÷3 临床数值错误，presence 只降 0.066（46% 被扣分，误罚底 33%），stance 降 0.255（67%，误罚底 40%）；judge 能力比 judge 规模更重要（"找错误"框架下 Haiku 87% > rubric 框架下 Opus 68%）。
+3. **逃生通道被直接测到**（条目对齐探针 + 三动作最优策略）：presence 下低置信时含糊、p≥0.62 才承诺；只加真实性惩罚后含糊区域扩大到 **p<0.80**；stance 下**含糊永不最优**，低置信时省略，c=−3 时 p≥0.69 才承诺，c\*≈−4 时 0.75；c=−1 则 36% 置信就承诺（虚张声势）。
+4. **与医师判断**：医师 BoN-4（meta-eval 标注）上，v3 与 presence 选中回答的医师分差为 −0.003 [−0.022, +0.018]（前 100 池；1,000 池在跑，见 P9c），在 hedging/context-seeking 子群为 +0.005（v1 在该子群显著更差的问题已修复）。
+
+**不能解决、明确划出范围的**："看过 rubric 的承诺式断言堆砌"（stance 下仍 P(列表 ≥ 理想)=0.96；holistic judge 能识破但与医师一致性不更高）、rubric 之外的编造。
+
+**重要更正**：HealthBench 的 "ideal completion" 不是可靠的人类理想锚点（Sonnet 只在 52.5% 的情况下认为它优于医师据以改写的原模型回答；98% 的情况下不如 2026 年模型的普通回答）；可靠的人类锚点是 meta-eval 的医师逐回答标注。
+
+**下一步**：M1 在开源训练 judge（Qwen3-32B 级）上重新标定 c\* 并收紧 grounding（G2' 自然回答 flag 精确率 0.46 差一点未过 0.50）→ M2 4B 预演 → M3 8B GRPO 三臂（presence / 只加真实性惩罚 / stance）。
+
+⚠️ **流程状态**：所有评审（triage、novelty、research-review、2 轮 method review）均为**同族（Claude）**；ARIS 要求的跨模型 reviewer（Codex/GPT 系）在本容器不可用，因此 novelty-check 与 research-review 的跨模型 receipt 无法记录，**evidence gate 为 BLOCKED**（见文末）。
 
 ## Literature Landscape
 
@@ -356,4 +370,50 @@ _（Phase 5 填写）_
 
 - **解读**：(1) **逃生通道被直接测到**：在 presence 上加真实性惩罚而不给含糊定价，含糊区域从 p<0.62 扩大到 p<0.80；(2) **stance credit 让含糊永不最优**，低置信时的最优动作变为省略（在 HealthBench 中由医师写的"承认不确定/索取信息"行为条目给合理的不确定定价）；(3) **c 必须按 judge 标定**：本 judge 下 c=−1 时 36% 置信就承诺（虚张声势），c=−3 → 0.69，**c\*≈−4 → 0.75**（设计目标）。R2 评审关于 c=−1 的担忧被条目级数据证实。
 - 局限：探针只覆盖"条目本身含数字"的内容条目（×3/÷3 的明显错误）；菜单探针里的备选是错误值（因而会被标矛盾），与"含正确答案的合理鉴别诊断列表"不同；判定器仍是 Claude 系。
+
+## Final Ranking
+
+### 🏆 Idea 1: Stance credit（I1 → v3）— RECOMMENDED
+- **Method（做什么）**：(1) 用原 HealthBench presence judge 判所有条目；(2) 只对 axis:accuracy/completeness 的正向条目再问一次"立场"（承诺 / 含糊 / 未覆盖 / 矛盾，矛盾须引文 + 复问）；(3) 内容条目按 +1 / 0 / 0 / c\* 计分，其余条目按 presence 计分；(4) 用该奖励做 GRPO。
+- **Hypothesis**：只加真实性惩罚会把压力推向含糊；h=0 的 stance credit 同时降低错误与含糊，且与医师判断非劣。
+- **Pilot**：POSITIVE（静态）——含糊与真实性盲区均被修复（G3/G4 PASS），三动作最优策略显示逃生通道与其关闭；G1/G1' PASS；G2 设计错误被撤回；G2' 差一点未过（0.46 vs 0.50）；医师 BoN-4 非劣的点估计 ≈ 0（功效待 9c 完成）。
+- **Novelty**：PROCEED 6/10（同族）——最近邻 ConRub-Med 2608.10996（无 hedged 状态）、Kalai et al. 2509.04664（短答 IDK、hedging 留作未来工作）。竞速风险中–高。
+- **Reviewer score**：research review 3/10（v1，"PROCEED"）→ method review 6.3 → **7.4（REVISE）**（均为同族）。
+- **Risk**：MEDIUM（RL 下可能退缩为省略；COMMIT judge 可被承诺式措辞欺骗；训练 judge 的 q/f 需重标）。
+- **Next step**：`refine-logs/EXPERIMENT_PLAN.md` 的 M1 → M2 → M3；`/run-experiment`。
+
+### Idea 2: 诊断论文"Presence 给分对真实性盲、对承诺无感"— BACKUP
+- 若 RL 显示 presence 在 4–8B 规模并不产生含糊/编造（前提失败），退回诊断框架：静态敏感度（P1/P9/P10）+ 医师 BoN-4 协议 + judge 规模 vs 框架（P4）+ 医师改写分类（P2，编辑类型双编码一致率 0.80–0.94）。新颖性弱于主线（2605.12474、2609.16816 已覆盖部分）。
+
+### Idea 3: 医师删除 → 负向条目（I10）— BACKUP（低优先）
+- P2 分类结果中间（hack 类删除 32% < 40% 阳性线）；医师最常做的是"增加具体行动"（30%）与"删除未被要求内容"（17%），并在 29% 的模型回答中纠正错误具体值。可作为主线论文中"专家在改什么"的人类证据，或单独的数据分析短文。
+
+## Eliminated Ideas
+
+| Idea | 淘汰/降级阶段 | 原因 |
+|---|---|---|
+| I12 Induced-action agreement | Pilot 3 | 按预登记规则淘汰：含糊/并列/错数值变体保留普通回答 93–100% 的决策一致率；错数值只在 12.5% 的 prompt 降低一致率；医师 BoN-4 一致性 0.587（presence 0.745） |
+| I3 "并列备选洗白"假设（负向条目被隐藏） | Pilot 1 | 被否定：分片 presence judge 已对并列备选扣分，负向条目触发率随 k 上升（0.20→0.31） |
+| I7 Pareto 支配作为"判断力通道"的证据 | Research review | 无特异性：同一文本重判对自身首判的弱支配率 53%；"可证明无法修复"为同义反复 → 撤回 |
+| 整体（holistic）judge 作为守卫/替代 | Pilot 5/7 | 能识破看过 rubric 的列表（plain ≻ 列表 95%），但医师一致性不更高（0.657 vs 0.727，差异不显著且 judge 模型混杂）；且 74.5% 偏好列表胜过医师理想回答 → 不作为方法组件 |
+| v1 stance 提示词 | Research review | 负向条目极性 bug + hedge 示例与构造模板同词 |
+| v2 two-stage COMMIT（"诚实的不确定"算承诺） | Pilot 8 A1 FAIL | 重开含糊逃生通道 |
+| c=−1 作为默认 | Method review R2 + Pilot 10 | 本 judge 下 36% 置信即承诺（真实性定价失效）→ 降为消融 |
+| 其余 15 个未进入 pilot 的想法（I2、I4–I6、I8、I9、I11、I13–I20、I22、I23） | Triage（同族） | **未被淘汰**——仅未分到 pilot 名额，仍为候选；其中 I2（τ）、I21（框架 > 规模）、I13（医师锚定 BoN）已作为组件并入主线；I6/I9/I16 可组成"离线 rubric 审计"的另一篇论文 |
+
+## Refined Proposal
+- Proposal：`refine-logs/FINAL_PROPOSAL.md`
+- Experiment plan：`refine-logs/EXPERIMENT_PLAN.md`
+- Tracker：`refine-logs/EXPERIMENT_TRACKER.md`
+- Review summary / refinement report / score history：`refine-logs/REVIEW_SUMMARY.md`、`refine-logs/REFINEMENT_REPORT.md`、`refine-logs/score-history.md`
+- Research contract（新会话先读这个）：`idea-stage/docs/research_contract.md`
+- Pilot 代码与原始结果：`idea-stage/pilot/`（判定器实现：`judges.py` 中的 `COMMIT3` / `commit3_many` / `v3_score`）
+
+## Next Steps
+- [ ] M1：在开源训练 judge（Qwen3-32B 级，vLLM）上重跑 Pilot 9/10 的闸门；收紧 grounding（引文须含冲突数值/实体与条目值）；用 ≥100 个自然回答 flag 重测 G2'；重新标定 c\*
+- [ ] 等 Pilot 9c 跑完（1,000 池）给出 B1 的最终非劣结论
+- [ ] M2：4B GRPO 预演（presence / h=1,c\* / h=0,c\*），先确认 presence 臂确实出现含糊或编造（前提检验）
+- [ ] M3：8B 三臂 × 2 seeds；M4 消融（c=−1、h=0.5、ConRub 式、mean-only）；M5 跨族评测 + 人工抽检
+- [ ] 若可获得：一个非 Claude 的 reviewer（Codex/GPT 系）补做 novelty-check 与 research-review，以记录跨模型 receipt
+- [ ] `/run-experiment` → `/auto-review-loop`
 

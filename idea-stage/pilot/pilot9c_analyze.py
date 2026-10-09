@@ -23,7 +23,7 @@ def main():
     P = lambda r: J.presence_score(rub(r["points"]), [bool(x) for x in r["presence"]])
     V = lambda r, h, c: J.v3_score(rub(r["points"]), [bool(x) for x in r["presence"]], r["commit3"], h, c)
     rules = {"presence": P, "v3 h0 c-3": lambda r: V(r, 0, -3), "v3 h0.5 c-3": lambda r: V(r, 0.5, -3), "v3 h1 c-3": lambda r: V(r, 1, -3),
-             "v3 h0 c-1": lambda r: V(r, 0, -1), "v3 h1 c-1 (ConRub-like)": lambda r: V(r, 1, -1)}
+             "v3 h0 c-1": lambda r: V(r, 0, -1), "v3 h1 c-1 (ConRub-like)": lambda r: V(r, 1, -1), "v3 h0 c-4.1 (c*)": lambda r: V(r, 0, -4.1)}
 
     def ev(f, ks):
         g, hit, conc = {}, [], []
