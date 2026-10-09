@@ -1,0 +1,9 @@
+
+Stage B (physician BoN-4): pools=198
+  mean physician gold of pick under presence: 0.863
+  mean physician gold of pick under proper  : 0.849
+  mean physician gold of pick under random  : 0.723
+  mean physician gold of pick under oracle  : 0.952
+  presence: P(pick is physician-best)=0.762   pairwise concordance with physicians=0.745
+  proper: P(pick is physician-best)=0.686   pairwise concordance with physicians=0.724
+  gold(proper pick) - gold(presence pick) = -0.014  95% CI (-0.042, 0.014)
