@@ -55,7 +55,7 @@ def build_variants(n):
     return rows
 
 
-def stage_a(n=100, n_rep=30):
+def stage_a(n=100, n_rep=20):
     rows = build_variants(n)
     jobs, keys = [], []
     for i, (ex, v) in enumerate(rows):

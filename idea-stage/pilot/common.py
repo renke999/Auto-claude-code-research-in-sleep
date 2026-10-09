@@ -68,3 +68,17 @@ def score(rubrics: list[dict], met: list[bool]) -> float:
     pos = sum(r["points"] for r in rubrics if r["points"] > 0)
     got = sum(r["points"] for r, m in zip(rubrics, met) if m)
     return max(0.0, min(1.0, got / pos)) if pos else 0.0
+
+
+REFUSAL_MARKERS = ["can't rewrite", "won't rewrite", "cannot rewrite", "can't do this", "won't do this",
+                   "won't produce", "can't produce", "can't turn", "won't turn", "can't present", "won't present",
+                   "can't reduce", "won't reduce", "not going to rewrite", "can't make this", "won't make this",
+                   "can't help with this", "won't help with this", "can't do that", "won't do that"]
+
+
+def is_rewrite_refusal(text: str | None) -> bool:
+    """Heuristic: a rewrite/transform request that the generator declined (not a medical disclaimer)."""
+    if not text:
+        return True
+    head = text.lower()[:300].replace("’", "'")
+    return any(m in head for m in REFUSAL_MARKERS)

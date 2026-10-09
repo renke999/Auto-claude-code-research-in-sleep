@@ -16,10 +16,16 @@ from pathlib import Path
 
 CACHE = Path(os.environ.get("PILOT_CACHE", Path(__file__).parent / ".cache"))
 CACHE.mkdir(parents=True, exist_ok=True)
+# Lean mode: no MCP servers, no tools, no settings/plugins -> ~45% less CPU per call on a 4-core box.
+# Pilots started before this flag existed (pilot 0/0b/0c, bank variants, pilot 1 stage B) ran in default mode.
+LEAN = os.environ.get("PILOT_LEAN", "1") == "1"
+LEAN_FLAGS = ["--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}', "--no-session-persistence",
+              "--tools", "", "--setting-sources", ""]
 
 
 def call(prompt: str, model: str = "claude-haiku-5-5", timeout: int = 240, retries: int = 2) -> str:
-    key = hashlib.sha256(f"{model}\n{prompt}".encode()).hexdigest()
+    tag = f"{model}+lean" if LEAN else model
+    key = hashlib.sha256(f"{tag}\n{prompt}".encode()).hexdigest()
     path = CACHE / f"{key}.json"
     if path.exists():
         return json.loads(path.read_text())["out"]
@@ -27,7 +33,7 @@ def call(prompt: str, model: str = "claude-haiku-5-5", timeout: int = 240, retri
     for _ in range(retries + 1):
         try:
             proc = subprocess.run(
-                ["claude", "-p", "--model", model, "--output-format", "text"],
+                ["claude", "-p", "--model", model, "--output-format", "text"] + (LEAN_FLAGS if LEAN else []),
                 input=prompt, capture_output=True, text=True, timeout=timeout, cwd="/tmp",
             )
             last = proc.stdout.strip()
@@ -40,6 +46,7 @@ def call(prompt: str, model: str = "claude-haiku-5-5", timeout: int = 240, retri
 
 
 def call_many(prompts: list[str], model: str = "claude-haiku-5-5", workers: int = 8) -> list[str]:
+    workers = min(workers, int(os.environ.get("PILOT_MAX_WORKERS", "10")))
     with ThreadPoolExecutor(workers) as ex:
         return list(ex.map(lambda p: call(p, model), prompts))
 
