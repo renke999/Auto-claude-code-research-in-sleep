@@ -156,3 +156,32 @@ _（Phase 5 填写）_
 
 > *Rubric 奖励为"提到"付费，医师为"正确地承诺"付费。把逐条给分从 presence 改为 stance，可用一条规则同时消除泛泛而谈、罗列断言与编造，并把奖励最优点移向医师理想回答——这是任何对 presence 判定的重新聚合都做不到的。*
 
+## Novelty Verification
+
+> ⚠️ **跨模型核验不可用**：ARIS `/novelty-check` 的 Phase C 需要 Codex（GPT 系）reviewer，本容器无此后端。以下检索为多源（arXiv API 字段检索、arxiv.org 搜索页、Hugging Face Papers、WebSearch/WebFetch 摘要精读），**判定由同族（Claude）独立 agent 给出**，只作参考，**不能记录为跨模型 receipt**（run state 中 novelty-check 无 `accept`）。检索期间 arXiv API 两次被限流（HTTP 429），已改用 arxiv.org 搜索页与 HF 补齐。
+
+### I1 Stance-proper rubric credit（主线）— PROCEED，6/10（同族判定）
+
+- 检索覆盖：28 条 arXiv 字段检索 + ~25 条 HF + ~14 条 Web，精读 22 篇候选摘要。**没有任何"rubric × hedge / stance / commitment"组合检索命中本工作**。
+- **核心声明与最近邻**：
+  1. *诊断（presence 给分对"是否承诺"不敏感、对错误具体值几乎不罚）*：2605.12474 已报告"presence-based gaming"、概念替代、话题匹配；ConRub-Med 2608.10996 指出二值打分"无法区分遗漏与错误断言"；2609.16023 指出 rubric 侧"至少满足其一"捆绑会抬分；PolyJudge-Uncertain（ACL 2026 SRW）发现 pointwise judge 对断言式与含糊式回答打分相同。**尚未有人测量"承诺 X" vs "把 X 列为 k 个选项之一"的逐条给分差**。
+  2. *隐含阈值 τ ≤ 0*：Why Language Models Hallucinate 2509.04664 已给出 t/(1−t) 惩罚，**我们的 −3w 恰是其 t=0.75 规则**；该文明确把 hedging 留作未来工作。新增点：把阈值逐条应用于 rubric，并把"列出全部备选"作为在 presence 给分下弱占优的第三种动作。
+  3. *Pareto 支配 → 任何单调重聚合都无效*：ProRubric、GEAR、Rubric Response Theory 2609.35646、POW3R、Rubric Dropout 都是重聚合；无人陈述该不可能性。**数学上近乎平凡**，价值在于统一批判 + 实证上在 HealthBench 上确实发生。
+  4. *stance 给分在 BoN/GRPO 下更接近医师*：最近邻 ConRub-Med（+1/0/−1 三态，GRPO，HealthBench-Hard）与 MetaRubric 2610.02824（证据感知给分）——**二者都没有"hedged"状态**，含糊提及在其中仍算已覆盖。
+- **最近先验表**：ConRub-Med 2608.10996 · Why LMs Hallucinate 2509.04664 · Reward Hacking in Rubric-Based RL 2605.12474 · MetaRubric 2610.02824 · ProRubric 2609.38847 · Are We Grading Properly? 2609.16023 · Abstention as an Action 2608.00301 · ImpossibleRubrics 2609.16816 · Binarization 2609.35797 · TruthRL 2509.25760 / Behaviorally Calibrated RL 2512.19920。
+- **审稿人会引用的风险与应对**：(a)"这是 ConRub-Med + Kalai t=0.75" → 关键消融：保持 −3w，比较 hedged=0 与 hedged=+w，以及 ConRub 式 +1/0/−1（已加入 pilot 分析，见下）；(b) 2608.00301：GRPO 组归一化可能把 −3w 的有效阈值压回 1/2 → RL 实验需实测训练后策略的有效阈值；(c) ImpossibleRubrics / Premature Closure 2605.15000：奖励承诺可能诱发过早下结论或 rubric 之外的编造（rubric 外的编造在 stance 给分下记为"absent"=0，不被惩罚）→ 需要证明医师 rubric 自己编码的必要 hedge 被保留，并另加 rubric 外编造检查；(d) 声明 3 写成 lemma，重点放在实证频率。
+- **建议定位**："Presence 判定对'是否承诺'视而不见。Stance credit 补上缺失的 hedged 状态与按阈值校准的矛盾惩罚，把逐条 rubric 奖励变成相对于沉默的打分规则；它与重聚合类修复（ProRubric、GEAR、RRT）互补，而后者可证明无法消除'含糊最优'。"
+- **竞速风险：中–高**。2026-05→10 至少 8 篇 rubric-RL hacking 论文；MetaRubric 一周前刚挂出；ConRub-Med 或 MetaRubric 的修订版可能加入 hedged 状态。
+
+### I10 医师删除 → 负向条目 — PROCEED，6/10（同族判定）
+
+- 最近邻：DR Tulu 2511.19399（LLM 从 rollout 总结负向 rubric）、OpenRubrics/CRG 2510.07743（对比对生成规则）、RubricArmor 2610.05308（自动攻防修补）、Feedback-to-Rubrics 2605.29857（从评论学条目）、TAHI 2609.04141、LAMP 2409.14509（专家编辑分类，创意写作）、2511.19940（医生编辑多为情境化）。
+- 差异：首次用真实专家改写对（HealthBench Group 2/3）作为负向条目来源，并在 hack 胜率上与 LLM 生成的负向条目正面比较。
+- 风险：2606.00018 发现临床医生编辑 AI 草稿时**增加** hedge 多于删除 → "专家恰好删除 hack 内容"必须作为待检验假设（Pilot 2 结果确实部分不支持，见下）；Group 3 编辑可能稀疏；负向条目最易受 judge 自偏好影响（2604.06996）；需与"在同样改写对上跑 CRG"做消融。
+
+### I12 Induced-action agreement — PROCEED，5/10（同族判定）
+
+- 最近邻：Linguistic Calibration 2404.00474（RL 奖励 = 模拟读者回答下游问题的准确率）、NoteAid-Chatbot 2509.05818（模拟患者理解测试作 PPO 奖励）、KnowledgeGain 2605.31099、DischargeBench 2609.20827、MQAG 2301.12307 / QuestEval、RLHS 2501.08617、Bean et al. 2504.18919（模拟用户只能弱预测真人选择）。
+- 差异：目标是"医师理想回答所诱导的决策"，而非事实或理解；含显式"没说清"选项；与逐条 rubric 在医师标注上正面比较。
+- 风险：读者用自身医学知识补全 → 已在 Pilot 3 加入空白回答对照；模拟用户效度；非决策型问题不适用。
+

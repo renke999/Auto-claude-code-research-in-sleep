@@ -128,3 +128,19 @@ def proper_score(rubrics, st):
         else:
             tot += r["points"] * {"committed": 1.0, "hedged": 0.5}.get(s, 0.0)
     return tot / pos if pos else 0.0
+
+
+def ablation_score(rubrics, st, hedged=0.0, contra=-3.0):
+    """Stance-credit family for ablations: positive items committed +1, hedged `hedged`, absent 0,
+    contradicted `contra`; negative items as in proper_score. hedged=1,contra=-1 ~ ConRub-Med three-state
+    (no hedged state: a hedged mention counts as correct); hedged=1,contra=-3 isolates the hedged state."""
+    pos = sum(r["points"] for r in rubrics if r["points"] > 0)
+    tot = 0.0
+    for r, s in zip(rubrics, st):
+        if s is None:
+            continue
+        if r["points"] > 0:
+            tot += r["points"] * {"committed": 1.0, "hedged": hedged, "contradicted": contra}.get(s, 0.0)
+        else:
+            tot += r["points"] * {"committed": 1.0, "hedged": 0.5}.get(s, 0.0)
+    return tot / pos if pos else 0.0

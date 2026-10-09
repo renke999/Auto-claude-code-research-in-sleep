@@ -195,9 +195,35 @@ def stage_b():
     print(f"  gold(proper pick) - gold(presence pick) = {st.mean(d):+.3f}  95% CI {tuple(round(x,3) for x in boot_ci(d))}")
 
 
+def ablations():
+    """Reviewer-requested ablation: which part of stance credit does the work?"""
+    rows = [json.loads(l) for l in (HERE / "pilot1a_results.jsonl").open() if json.loads(l)["rep"] == 0]
+    by = {(r["i"], r["variant"]): r for r in rows}
+    n = max(r["i"] for r in rows) + 1
+    cfgs = {"presence(judge)": None, "proper h=0,c=-3": (0.0, -3.0), "hedged-as-commit h=1,c=-3": (1.0, -3.0),
+            "ConRub-like h=1,c=-1": (1.0, -1.0), "h=0,c=-1": (0.0, -1.0)}
+    print("\n== Ablation: P(variant >= ideal) and mean delta vs plain, by credit rule ==")
+    for name, cfg in cfgs.items():
+        line = [name.ljust(26)]
+        for v in ("aware", "disj3", "disj9", "hedged", "numpert", "padded"):
+            ge, dl = [], []
+            for i in range(n):
+                if (i, v) not in by or (i, "ideal") not in by or (i, "plain") not in by:
+                    continue
+                f = (lambda r: J.presence_score(rub(r["points"]), [bool(x) for x in r["presence"]])) if cfg is None else \
+                    (lambda r, c=cfg: J.ablation_score(rub(r["points"]), r["stance"], *c))
+                a, b, c0 = f(by[(i, v)]), f(by[(i, "ideal")]), f(by[(i, "plain")])
+                ge.append(a >= b); dl.append(a - c0)
+            if ge:
+                line.append(f"{v}:{sum(ge)/len(ge):.2f}/{st.mean(dl):+.2f}")
+        print("  ".join(line))
+
+
 if __name__ == "__main__":
     w = sys.argv[1] if len(sys.argv) > 1 else "ab"
     if "a" in w:
         stage_a()
     if "b" in w:
         stage_b()
+    if "x" in w:
+        ablations()
