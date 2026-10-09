@@ -417,3 +417,302 @@
 - [ ] 若可获得：一个非 Claude 的 reviewer（Codex/GPT 系）补做 novelty-check 与 research-review，以记录跨模型 receipt
 - [ ] `/run-experiment` → `/auto-review-loop`
 
+
+## Appendix A: 核验过的文献清单（271 篇，按检索分片；全部经 `tools/verify_papers.py` 核验）
+
+### A. 核心 rubric-as-reward 方法（89 篇）
+
+| arXiv | Title | Verification |
+|---|---|---|
+| 2610.05308 | RubricArmor: Adversarial Evolution Improves LLM-Based Rubric Generation | ✅ verified (arxiv) |
+| 2610.02824 | MetaRubric: Learning to Reward for Rubric-Based Reinforcement Learning | ✅ verified (arxiv) |
+| 2610.02781 | OPD Before RL: Warm-Starting Rubric-Based RL with On-Policy Distillation | ✅ verified (arxiv) |
+| 2610.00389 | MatrixReward: Reward from Rubric Matrix for Open-Ended Generation | ✅ verified (arxiv) |
+| 2609.38847 | Scoring Higher, Answering Worse: Mitigating Reward Hacking in Rubric-Based RL via Protocol-Level Rubrics | ✅ verified (arxiv) |
+| 2609.36900 | STAR-GRPO: Canonical Anchoring and Reliability-First Advantages against Representation-Dependent Reward Hacking | ✅ verified (arxiv) |
+| 2609.35646 | Rubric Rewards from Item Response Theory | ✅ verified (arxiv) |
+| 2609.24480 | Fathom-Vaidya: Advancing Medical Reasoning with Rubric-Based Rewards | ✅ verified (arxiv) |
+| 2609.23457 | RLVR$^{2}$: Reinforcement Learning with Verifiable Rubric-based Ranking | ✅ verified (arxiv) |
+| 2609.16816 | ImpossibleRubrics: Stress-Testing Generated Rubrics as Reward Signals | ✅ verified (arxiv) |
+| 2609.12459 | EvoRS: On-Policy Self-Evolution of Reward Systems for Open-Ended Reinforcement Learning | ✅ verified (arxiv) |
+| 2609.00892 | CARE: Contrastive Anchor-based Rubric Evolution for Large Language Model Post-Training | ✅ verified (arxiv) |
+| 2608.30005 | Small Language Models as Judges for Rubric-Based Reinforcement Learning | ✅ verified (arxiv) |
+| 2608.27505 | A Survey on Rubric-Guided Reinforcement Learning for Language Models | ✅ verified (arxiv) |
+| 2608.23812 | From Preferences to Principles: Rubric-Based Alignment for Grounded Knowledge Answers | ✅ verified (arxiv) |
+| 2608.12337 | From Refuse to Richness: Rubric Rewards for Long-Form Hallucination Reinforcement Learning | ✅ verified (arxiv) |
+| 2608.11669 | Rubric Dropout: A Simple Way to Mitigate Reward Hacking in Rubric-as-Reward RL | ✅ verified (arxiv) |
+| 2608.10996 | ConRub-Med: Reinforcement Learning with Consensus Rubrics for Open-Ended Medical Question Answering | ✅ verified (arxiv) |
+| 2608.09123 | RISE-RL: Rubric-Informed Selective Exploration for Open-Ended Reinforcement Learning | ✅ verified (arxiv) |
+| 2608.02948 | Rubrics as Privileged Information for Open-Ended Generation | ✅ verified (arxiv) |
+| 2607.26873 | SERPO: Self-Evolving Rubric Policy Optimization for Open-Ended Test-Time Reinforcement Learning | ✅ verified (arxiv) |
+| 2607.20083 | Co-Evolving LLM Evaluators and Policies via DynamicRubric | ✅ verified (arxiv) |
+| 2607.18082 | CriPO: Enhancing Rubric-based RL via Self-Distillation | ✅ verified (arxiv) |
+| 2607.15092 | Rubrics on Trial: Evolving Rubrics from a Single Query via Synthetic Pairwise Evidence | ✅ verified (arxiv) |
+| 2607.01830 | Many Voices, One Reward: Multi-Role Rubric Generation for LLM Judging and Reward Modeling | ✅ verified (arxiv) |
+| 2606.23038 | EvoRubrics: Dynamic Rubrics as Rewards via Adversarial Co-Evolution for LLM Reinforcement Learning | ✅ verified (arxiv) |
+| 2606.19327 | Rethinking Reward Supervision: Rubric-Conditioned Self-Distillation | ✅ verified (arxiv) |
+| 2606.17029 | DEEPRUBRIC: Evidence-Tree Rubric Supervision for Efficient Reinforcement Learning of Deep Research Agents | ✅ verified (arxiv) |
+| 2606.12507 | Rubric-Guided Self-Distillation: Post-Training Without Rubric Verifiers | ✅ verified (arxiv) |
+| 2606.09118 | ComplexConstraints and Beyond: Expert Rubrics for RLVR | ✅ verified (arxiv) |
+| 2606.08625 | From Holistic Evaluation to Structured Criteria: Rubrics Across the Evolving LLM Landscape | ✅ verified (arxiv) |
+| 2606.08077 | Support Vector Rubrics: Closing the Gap Between Self-Generated and Human Rubrics | ✅ verified (arxiv) |
+| 2606.04923 | Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning | ✅ verified (arxiv) |
+| 2606.03968 | QUBRIC: Co-Designing Queries and Rubrics for RL Beyond Verifiable Rewards | ✅ verified (arxiv) |
+| 2606.03361 | Mitigating False Credit Propagation: Probabilistic Graphical Reward Aggregation for Rubric-Based Reinforcement Learning | ✅ verified (arxiv) |
+| 2606.01091 | Deep Research as Rubric for Reinforcement Learning | ✅ verified (arxiv) |
+| 2605.30244 | Reinforcement Learning with Robust Rubric Rewards | ✅ verified (arxiv) |
+| 2605.29847 | EvoRubric: Self-Evolving Rubric-Driven RL for Open-Ended Generation | ✅ verified (arxiv) |
+| 2605.29275 | Prompt-Level Reward Specifications for Open-Ended Post-Training | ✅ verified (arxiv) |
+| 2605.29156 | RUBRIC-ARROW: Alternating Pointwise Rubric Reward Modeling for LLM Post-training in Non-verifiable Domains | ✅ verified (arxiv) |
+| 2605.26958 | Tournament-GRPO: Group-Wise Tournament Rewards for Reinforcement Learning in Open-Ended Long-Form Generation | ✅ verified (arxiv) |
+| 2605.26579 | Focal Reward: Balanced Reinforcement Learning under Rubric-Based Rewards | ✅ verified (arxiv) |
+| 2605.23454 | ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning | ✅ verified (arxiv) |
+| 2605.20164 | Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR | ✅ verified (arxiv) |
+| 2605.18592 | AMARIS: A Memory-Augmented Rubric Improvement System for Rubric-Based Reinforcement Learning | ✅ verified (arxiv) |
+| 2605.17291 | Step-wise Rubric Rewards for LLM Reasoning | ✅ verified (arxiv) |
+| 2605.12667 | ODRPO: Ordinal Decompositions of Discrete Rewards for Robust Policy Optimization | ✅ verified (arxiv) |
+| 2605.12474 | Reward Hacking in Rubric-Based Reinforcement Learning | ✅ verified (arxiv) |
+| 2605.10899 | RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards | ✅ verified (arxiv) |
+| 2605.08061 | Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning | ✅ verified (arxiv) |
+| 2605.07461 | Think-with-Rubrics: From External Evaluator to Internal Reasoning Guidance | ✅ verified (arxiv) |
+| 2605.05750 | RVPO: Risk-Sensitive Alignment via Variance Regularization | ✅ verified (arxiv) |
+| 2605.03871 | EvoLM: Self-Evolving Language Models through Co-Evolved Discriminative Rubrics | ✅ verified (arxiv) |
+| 2604.20051 | Bootstrapping Post-training Signals for Open-ended Tasks via Rubric-based Self-play on Pre-training Text | ✅ verified (arxiv) |
+| 2604.13618 | C2: Scalable Rubric-Augmented Reward Modeling from Binary Preferences | ✅ verified (arxiv) |
+| 2604.02795 | Rubrics to Tokens: Bridging Response-level Rubrics and Token-level Rewards in Instruction Following Tasks | ✅ verified (arxiv) |
+| 2603.26535 | PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization | ✅ verified (arxiv) |
+| 2603.15646 | Alternating Reinforcement Learning with Contextual Rubric Rewards: Beyond the Scalarization Strategy | ✅ verified (arxiv) |
+| 2603.01562 | RubricBench: Aligning Model-Generated Rubrics with Human Standards | ✅ verified (arxiv) |
+| 2602.22758 | Decomposing Physician Disagreement in HealthBench | ✅ verified (arxiv) |
+| 2602.20751 | SibylSense: Adaptive Rubric Learning via Memory Tuning and Adversarial Probing | ✅ verified (arxiv) |
+| 2602.14069 | Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric | ✅ verified (arxiv) |
+| 2602.12268 | CM2: Reinforcement Learning with Checklist Rewards for Multi-Turn and Multi-Step Agentic Tool Use | ✅ verified (arxiv) |
+| 2602.10885 | Reinforcing Chain-of-Thought Reasoning with Self-Evolving Rubrics | ✅ verified (arxiv) |
+| 2602.03619 | Learning Query-Specific Rubrics from Human Preferences for DeepResearch Report Generation | ✅ verified (arxiv) |
+| 2602.01511 | Alternating Reinforcement Learning for Rubric-Based Reward Modeling in Non-Verifiable LLM Post-Training | ✅ verified (arxiv) |
+| 2601.18706 | Health-SCORE: Towards Scalable Rubrics for Improving Health-LLMs | ✅ verified (arxiv) |
+| 2601.08430 | RubricHub: A Comprehensive and Highly Discriminative Rubric Dataset via Automated Coarse-to-Fine Generation | ✅ verified (arxiv) |
+| 2601.06021 | Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards | ✅ verified (arxiv) |
+| 2512.23707 | Training AI Co-Scientists Using Rubric Rewards | ✅ verified (arxiv) |
+| 2512.02556 | DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models | ✅ verified (arxiv) |
+| 2511.19399 | DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research | ✅ verified (arxiv) |
+| 2511.10507 | AdvancedIF: Rubric-Based Benchmarking and Reinforcement Learning for Advancing LLM Instruction Following | ✅ verified (arxiv) |
+| 2511.01758 | RLAC: Reinforcement Learning with Adversarial Critic for Free-Form Generation Tasks | ✅ verified (arxiv) |
+| 2510.17314 | Auto-Rubric: Learning From Implicit Weights to Explicit Rubrics for Reward Modeling | ✅ verified (arxiv) |
+| 2510.15859 | InfiMed-ORBIT: Aligning LLMs on Open-Ended Complex Tasks via Rubric-Based Incremental Training | ✅ verified (arxiv) |
+| 2510.07774 | Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | ✅ verified (arxiv) |
+| 2510.07743 | OpenRubrics: Towards Scalable Synthetic Rubric Generation for Reward Modeling and LLM Alignment | ✅ verified (arxiv) |
+| 2510.07284 | Online Rubrics Elicitation from Pairwise Comparisons | ✅ verified (arxiv) |
+| 2509.25534 | Self-Rewarding Rubric-Based Reinforcement Learning for Open-Ended Reasoning | ✅ verified (arxiv) |
+| 2509.21500 | Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training | ✅ verified (arxiv) |
+| 2509.02208 | Baichuan-M2: Scaling Medical Capability with Large Verifier System | ✅ verified (arxiv) |
+| 2508.16949 | Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning | ✅ verified (arxiv) |
+| 2508.12790 | Reinforcement Learning with Rubric Anchors | ✅ verified (arxiv) |
+| 2507.20534 | Kimi K2: Open Agentic Intelligence | ✅ verified (arxiv) |
+| 2507.18624 | Checklists Are Better Than Reward Models For Aligning Language Models | ✅ verified (arxiv) |
+| 2507.17746 | Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | ✅ verified (arxiv) |
+| 2506.13351 | Direct Reasoning Optimization: Token-Level Reasoning Reflectivity Meets Rubric Gates for Unverifiable Tasks | ✅ verified (arxiv) |
+| 2505.08775 | HealthBench: Evaluating Large Language Models Towards Improved Human Health | ✅ verified (arxiv) |
+
+### B. Rubric 生成 / 质量 / 与人类专家对齐（53 篇）
+
+| arXiv | Title | Verification |
+|---|---|---|
+| 2610.10809 | Evaluating Rubric Generation with Interventional Transfer | ✅ verified (arxiv) |
+| 2609.37322 | Mubric: Mutation Testing-Guided Rubric Generation for LLM Evaluation | ✅ verified (arxiv) |
+| 2609.35744 | FinAutoRubric: Expert-Guided Automatic Rubric Generation for Evaluating Financial Research Agents | ✅ verified (arxiv) |
+| 2609.33086 | From Constitutions to Control: Interpretable Rewards for Aligning Language Models | ✅ verified (arxiv) |
+| 2609.16023 | Are We Grading Properly? Understanding Failure Modes in Medical Benchmarks | ✅ verified (arxiv) |
+| 2609.04141 | Efficient Test-Time Adaptation through Human-AI Interaction | ✅ verified (arxiv) |
+| 2608.29856 | GenRubric: Self-Evolving Rubric Generation for Scalable LLM Evaluation | ✅ verified (arxiv) |
+| 2608.20385 | Using Human-LLM Disagreement to Improve Checklist-Based Quality Appraisal | ✅ verified (arxiv) |
+| 2608.14212 | APTER: Adaptive Post-Training with Expert-Grounded Rubrics | ✅ verified (arxiv) |
+| 2608.13564 | Inducing Reward-Free Judging Rubrics that Reduce Over-Crediting in Agent Evaluation | ✅ verified (arxiv) |
+| 2608.01810 | RADAR: Rubric-Aware Dependency and Redundancy Analysis for LLM-as-Judge Evaluation | ✅ verified (arxiv) |
+| 2607.29252 | CalibratedRubric: Task-Adaptive Rubric Banks for Open-Ended LLM Evaluation | ✅ verified (arxiv) |
+| 2607.20485 | Expectation Alignment of Language Models for Real-World User Expectations | ✅ verified (arxiv) |
+| 2607.12835 | Can LLMs Write Reliable Rubrics? A Meta-Evaluation for Experiment Reproduction | ✅ verified (arxiv) |
+| 2607.12252 | FinResearchBench II: A Deep Research Benchmark with Consensus-Derived Gold Rubrics for Distinguishing Financial Report Quality | ✅ verified (arxiv) |
+| 2606.29920 | Can LLM-as-a-Judge Reliably Verify Rubrics in Agentic Scenarios? | ✅ verified (arxiv) |
+| 2606.07040 | Beyond Rubrics: Exploration-Guided Evaluation Skills for Reward Modeling | ✅ verified (arxiv) |
+| 2605.31545 | Preference-Aware Rubric Learning for Personalized Evaluation | ✅ verified (arxiv) |
+| 2605.30803 | PReMISE: Policy Rubrics as Measurement Specifications for LLM Judges | ✅ verified (arxiv) |
+| 2605.30568 | Generating and Refining Dynamic Evaluation Rubrics for LLM-as-a-Judge | ✅ verified (arxiv) |
+| 2605.29857 | Feedback-to-Rubrics: Can We Learn Expert Criteria from Inline Comments? | ✅ verified (arxiv) |
+| 2605.25240 | JudgmentBench: Comparing Rubric and Preference Evaluation for Quality Assessment | ✅ verified (arxiv) |
+| 2605.06283 | Quantifying the Statistical Effect of Rubric Modifications on Human-Autorater Agreement | ✅ verified (arxiv) |
+| 2604.27470 | HealthBench Professional: Evaluating Large Language Models on Real Clinician Chats | ✅ verified (arxiv) |
+| 2604.26679 | MultEval: Supporting Collaborative Alignment for LLM-as-a-Judge Evaluation Criteria | ✅ verified (arxiv) |
+| 2604.24710 | Case-Specific Rubrics for Clinical AI Evaluation: Methodology, Validation, and LLM-Clinician Agreement Across 823 Encounters | ✅ verified (arxiv) |
+| 2604.11246 | Judge Like Human Examiners: A Weighted Importance Multi-Point Evaluation Framework for Generative Tasks with Long-form Answers | ✅ verified (arxiv) |
+| 2604.01375 | The Hitchhikers Guide to Rubric Quality Understanding and Enrichment | ✅ verified (arxiv) |
+| 2603.25133 | RubricEval: A Rubric-Level Meta-Evaluation Benchmark for LLM Judges in Instruction Following | ✅ verified (arxiv) |
+| 2603.21362 | AdaRubric: Task-Adaptive Rubrics for Reliable LLM Agent Evaluation and Reward Learning | ✅ verified (arxiv) |
+| 2603.20882 | RubricRAG: Towards Interpretable and Reliable LLM Evaluation via Domain Knowledge Retrieval for Rubric Generation | ✅ verified (arxiv) |
+| 2603.08035 | CDRRM: Contrast-Driven Rubric Generation for Reliable and Interpretable Reward Modeling | ✅ verified (arxiv) |
+| 2603.07019 | AutoChecklist: Composable Pipelines for Checklist Generation and Scoring with LLM-as-a-Judge | ✅ verified (arxiv) |
+| 2603.00077 | Autorubric: A Unifying Framework for Rubric-Based LLM Evaluation on Non-Verifiable Tasks | ✅ verified (arxiv) |
+| 2602.13576 | Rubrics as an Attack Surface: Stealthy Preference Drift in LLM Judges | ✅ verified (arxiv) |
+| 2602.08672 | Learning to Judge: LLMs Designing and Applying Evaluation Rubrics | ✅ verified (arxiv) |
+| 2602.05125 | Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks | ✅ verified (arxiv) |
+| 2601.15161 | Retrieval-Augmented Agentic Rubric Generation for Reliable Medical Response Evaluation | ✅ verified (arxiv) |
+| 2601.08536 | DeepResearch Bench II: Diagnosing Deep Research Agents via Rubrics from Expert Reports | ✅ verified (arxiv) |
+| 2511.11562 | PRBench: Large-Scale Expert Rubrics for Evaluating High-Stakes Professional Reasoning | ✅ verified (arxiv) |
+| 2511.07685 | ResearchRubrics: A Benchmark of Prompts and Rubrics For Evaluating Deep Research Agents | ✅ verified (arxiv) |
+| 2510.18941 | ProfBench: Multi-Domain Rubrics requiring Professional Knowledge to Answer and Judge | ✅ verified (arxiv) |
+| 2508.15218 | Are Checklists Really Useful for Automatic Evaluation of Generative Tasks? | ✅ verified (arxiv) |
+| 2506.03637 | RewardAnything: Generalizable Principle-Following Reward Models | ✅ verified (arxiv) |
+| 2505.13388 | R3: Robust Rubric-Agnostic Reward Models | ✅ verified (arxiv) |
+| 2504.01848 | PaperBench: Evaluating AI's Ability to Replicate AI Research | ✅ verified (arxiv) |
+| 2501.00274 | LLM-Rubric: A Multidimensional, Calibrated Approach to Automated Evaluation of Natural Language Texts | ✅ verified (arxiv) |
+| 2410.21545 | CARMO: Dynamic Criteria Generation for Context-Aware Reward Modelling | ✅ verified (arxiv) |
+| 2410.03608 | TICKing All the Boxes: Generated Checklists Improve LLM Evaluation and Generation | ✅ verified (arxiv) |
+| 2406.06560 | Inverse Constitutional AI: Compressing Preferences into Principles | ✅ verified (arxiv) |
+| 2404.12272 | Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences | ✅ verified (arxiv) |
+| 2403.18771 | CheckEval: A reliable LLM-as-a-Judge framework for evaluating text generation using checklists | ✅ verified (arxiv) |
+| 2401.03601 | InFoBench: Evaluating Instruction Following Ability in Large Language Models | ✅ verified (arxiv) |
+
+### C. Rubric 与 LLM-judge 的 reward hacking（31 篇）
+
+| arXiv | Title | Verification |
+|---|---|---|
+| 2610.11281 | How to post-train on a surrogate: Envelope sampling mitigates reward hacking | ✅ verified (arxiv) |
+| 2610.03025 | Verifiable, Articulable, and Tacit Components of Preference | ✅ verified (arxiv) |
+| 2609.35797 | Binarization Flattens the Score Space | ✅ verified (arxiv) |
+| 2608.06422 | Sharding Prevents LLM Oversight Failures and Adversarial Exploitation | ✅ verified (arxiv) |
+| 2607.08700 | Do You Need a Frontier Model as a Citation Verifier? Benchmarking Rubric LLMs for Deep-Research Source Attribution | ✅ verified (arxiv) |
+| 2607.05904 | More Convincing, Not More Correct: Self-Play Reward Hacking of Reference-Free LLM Judges | ✅ verified (arxiv) |
+| 2606.03131 | HARVE: Hacking-Aware Reward-Head Vector Editing for Robust Reward Models | ✅ verified (arxiv) |
+| 2605.27996 | Reward Bias Substitution: Single-Axis Bias Mitigations Redirect Optimization Pressure | ✅ verified (arxiv) |
+| 2605.26156 | Turning Bias into Bugs: Bandit-Guided Style Manipulation Attacks on LLM Judges | ✅ verified (arxiv) |
+| 2604.13602 | Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges | ✅ verified (arxiv) |
+| 2604.06996 | Self-Preference Bias in Rubric-Based Evaluation of Large Language Models | ✅ verified (arxiv) |
+| 2604.02986 | Mitigating Reward Hacking in RLHF via Advantage Sign Robustness | ✅ verified (arxiv) |
+| 2603.28063 | Reward Hacking as Equilibrium under Finite Evaluation | ✅ verified (arxiv) |
+| 2603.12246 | Examining Reasoning LLMs-as-Judges in Non-Verifiable LLM Post-Training | ✅ verified (arxiv) |
+| 2603.03291 | One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models | ✅ verified (arxiv) |
+| 2602.15222 | Automatically Finding Reward Model Biases | ✅ verified (arxiv) |
+| 2602.01750 | Adversarial Reward Auditing for Active Detection and Mitigation of Reward Hacking | ✅ verified (arxiv) |
+| 2510.13694 | Information-Theoretic Reward Modeling for Stable RLHF: Detecting and Mitigating Reward Hacking | ✅ verified (arxiv) |
+| 2508.05618 | Learning to Reason for Factuality | ✅ verified (arxiv) |
+| 2507.08794 | One Token to Fool LLM-as-a-Judge | ✅ verified (arxiv) |
+| 2506.05339 | Flattery, Fluff, and Fog: Diagnosing and Mitigating Idiosyncratic Biases in Preference Models | ✅ verified (arxiv) |
+| 2505.15795 | Reverse Engineering Human Preferences with Reinforcement Learning | ✅ verified (arxiv) |
+| 2504.06141 | Adversarial Training of Reward Models | ✅ verified (arxiv) |
+| 2409.12822 | Language Models Learn to Mislead Humans via RLHF | ✅ verified (arxiv) |
+| 2409.11704 | From Lists to Emojis: How Format Bias Affects Model Alignment | ✅ verified (arxiv) |
+| 2402.07319 | ODIN: Disentangled Reward Mitigates Hacking in RLHF | ✅ verified (arxiv) |
+| 2401.00243 | Uncertainty-Penalized Reinforcement Learning from Human Feedback with Diverse Reward LoRA Ensembles | ✅ verified (arxiv) |
+| 2312.09244 | Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate Reward Hacking | ✅ verified (arxiv) |
+| 2310.13548 | Towards Understanding Sycophancy in Language Models | ✅ verified (arxiv) |
+| 2310.02743 | Reward Model Ensembles Help Mitigate Overoptimization | ✅ verified (arxiv) |
+| 2210.10760 | Scaling Laws for Reward Model Overoptimization | ✅ verified (arxiv) |
+
+### D. 真实性 / 具体性奖励及其与 rubric 的结合（53 篇）
+
+| arXiv | Title | Verification |
+|---|---|---|
+| 2609.34296 | Dr.Credit: Rubric-Grounded Process Credit Assignment for Deep Research Agents | ✅ verified (arxiv) |
+| 2609.22223 | EAVer: Long-Form Factuality Verification as an End-to-End Agentic Policy | ✅ verified (arxiv) |
+| 2609.00213 | Uncovering and Mitigating Aggregation-Induced Reward Hacking in Multi-Reward Reinforcement Learning | ✅ verified (arxiv) |
+| 2608.20331 | G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation | ✅ verified (arxiv) |
+| 2607.19322 | Two-Level Meta-Rubrics for Evaluating Open-Ended Generation: GAMUT, a Benchmark for Factual Completeness | ✅ verified (arxiv) |
+| 2607.10738 | To Answer or to Abstain: Mitigating Search-Agent Hallucinations via Abstention-Aware Reinforcement Learning | ✅ verified (arxiv) |
+| 2607.05150 | Claim-Level Rubric Rewards for Video Caption Reinforcement Learning | ✅ verified (arxiv) |
+| 2607.01440 | FaithMed: Training LLMs For Faithful Evidence-Based Medical Reasoning | ✅ verified (arxiv) |
+| 2606.15893 | BALTO: Balanced Token-Level Policy Optimization for Hallucination Mitigation | ✅ verified (arxiv) |
+| 2605.29648 | Beyond Math and Code: Lightweight Corpus-Grounded Process Rewards for Factual Question Answering | ✅ verified (arxiv) |
+| 2605.25988 | What Makes a Medical Checker Trainable? Diagnosing Signal Collapse and Reward Hacking in Checker-Guided RAG for Biomedical QA | ✅ verified (arxiv) |
+| 2605.20278 | ClaimDiff-RL: Fine-Grained Caption Reinforcement Learning through Visual Claim Comparison | ✅ verified (arxiv) |
+| 2605.01749 | Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality | ✅ verified (arxiv) |
+| 2604.22779 | KARL: Mitigating Hallucinations in LLMs via Knowledge-Boundary-Aware Reinforcement Learning | ✅ verified (arxiv) |
+| 2604.12046 | Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration | ✅ verified (arxiv) |
+| 2604.03141 | Beyond Precision: Importance-Aware Recall for Factuality Evaluation in Long-Form LLM Generation | ✅ verified (arxiv) |
+| 2603.10494 | Coverage-Controlled Preference Mining from Noisy Claim Verification for Evidence-Grounded Generation | ✅ verified (arxiv) |
+| 2602.11908 | When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation | ✅ verified (arxiv) |
+| 2602.10017 | SCORE: Specificity, Context Utilization, Robustness, and Relevance for Reference-Free LLM Evaluation | ✅ verified (arxiv) |
+| 2602.05723 | Mitigating Hallucination in Financial Retrieval-Augmented Generation via Fine-Grained Knowledge Verification | ✅ verified (arxiv) |
+| 2602.01348 | Does Faithfulness-Guided Alignment Hurt Accuracy? Unlocking Accurate and Faithful Post-Retrieval Reasoning | ✅ verified (arxiv) |
+| 2601.20126 | Rewarding Intellectual Humility Learning When Not To Answer In Large Language Models | ✅ verified (arxiv) |
+| 2601.03027 | Reducing Hallucinations in LLMs via Factuality-Aware Preference Learning | ✅ verified (arxiv) |
+| 2512.08944 | Enhancing Reliability across Short and Long-Form QA via Reinforcement Learning | ✅ verified (arxiv) |
+| 2511.11500 | Honesty over Accuracy: Trustworthy Language Models through Reinforced Hesitation | ✅ verified (arxiv) |
+| 2510.17733 | Train for Truth, Keep the Skills: Binary Retrieval-Augmented Reward Mitigates Hallucinations | ✅ verified (arxiv) |
+| 2510.14660 | An Efficient Rubric-based Generative Verifier for Search-Augmented LLMs | ✅ verified (arxiv) |
+| 2510.02338 | Optimizing Long-Form Clinical Text Generation with Claim-Based Rewards | ✅ verified (arxiv) |
+| 2509.25760 | TruthRL: Incentivizing Truthful LLMs via Reinforcement Learning | ✅ verified (arxiv) |
+| 2509.25409 | From Faithfulness to Correctness: Generative Reward Models that Think Critically | ✅ verified (arxiv) |
+| 2509.23765 | Knowledge-Level Consistency Reinforcement Learning: Dual-Fact Alignment for Long-Form Factuality | ✅ verified (arxiv) |
+| 2509.04664 | Why Language Models Hallucinate | ✅ verified (arxiv) |
+| 2506.19807 | KnowRL: Exploring Knowledgeable Reinforcement Learning for Factuality | ✅ verified (arxiv) |
+| 2506.15522 | Lessons from Training Grounded LLMs with Verifiable Rewards | ✅ verified (arxiv) |
+| 2505.24630 | Reasoning Models Hallucinate More: Factuality-Aware Reinforcement Learning for Large Reasoning Models | ✅ verified (arxiv) |
+| 2505.23912 | LoVeC: Reinforcement Learning for Better Verbalized Confidence in Long-Form Generations | ✅ verified (arxiv) |
+| 2505.23646 | Are Reasoning Models More Prone to Hallucination? | ✅ verified (arxiv) |
+| 2505.23295 | How Does Response Length Affect Long-Form Factuality | ✅ verified (arxiv) |
+| 2505.20825 | Reinforced Informativeness Optimization for Long-Form Retrieval-Augmented Generation | ✅ verified (arxiv) |
+| 2505.16973 | VeriFastScore: Speeding up long-form factuality evaluation | ✅ verified (arxiv) |
+| 2505.13988 | The Hallucination Tax of Reinforcement Finetuning | ✅ verified (arxiv) |
+| 2505.09701 | VeriFact: Enhancing Long-Form Factuality Evaluation with Refined Fact Extraction and Reference Facts | ✅ verified (arxiv) |
+| 2503.02846 | Mask-DPO: Generalizable Fine-grained Factuality Alignment of LLMs | ✅ verified (arxiv) |
+| 2502.19110 | Conformal Linguistic Calibration: Trading-off between Factuality and Specificity | ✅ verified (arxiv) |
+| 2410.01691 | FactAlign: Long-form Factuality Alignment of Large Language Models | ✅ verified (arxiv) |
+| 2407.03572 | Core: Robust Factual Precision with Informative Sub-Claim Identification | ✅ verified (arxiv) |
+| 2406.19276 | VERISCORE: Evaluating the factuality of verifiable claims in long-form text generation | ✅ verified (arxiv) |
+| 2405.01525 | FLAME: Factuality-Aware Alignment for Large Language Models | ✅ verified (arxiv) |
+| 2404.00474 | Linguistic Calibration of Long-Form Generations | ✅ verified (arxiv) |
+| 2403.18802 | Long-form factuality in large language models | ✅ verified (arxiv) |
+| 2403.05612 | Unfamiliar Finetuning Examples Control How Language Models Hallucinate | ✅ verified (arxiv) |
+| 2311.08401 | Fine-tuning Language Models for Factuality | ✅ verified (arxiv) |
+| 2305.14251 | FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | ✅ verified (arxiv) |
+
+### E. 相邻机制（生成式 RM、对抗/共进化 judge、不确定性、权重学习）（45 篇）
+
+| arXiv | Title | Verification |
+|---|---|---|
+| 2610.11464 | Who Verifies the Verifier? Co-Evolving Inspectable Graders with Self-Improving Agents | ✅ verified (arxiv) |
+| 2610.05370 | EnGRICH: Enhancing Generative Reward Modeling with Critiques from Humans | ✅ verified (arxiv) |
+| 2609.33803 | Diffusion Reward Models | ✅ verified (arxiv) |
+| 2609.00494 | Human-Anchored Factuality Evaluation with Strategic Annotation | ✅ verified (arxiv) |
+| 2606.21262 | ARCO: Adaptive Rubrics with Co-Evolution for Multi-Step LLM-Based Agents | ✅ verified (arxiv) |
+| 2604.02368 | Xpertbench: Expert Level Tasks with Rubrics-Based Evaluation | ✅ verified (arxiv) |
+| 2603.16600 | Rationale Matters: Learning Transferable Rubrics via Proxy-Guided Critique for VLM Reward Models | ✅ verified (arxiv) |
+| 2602.24040 | RewardUQ: A Unified Framework for Uncertainty-Aware Reward Models | ✅ verified (arxiv) |
+| 2602.06763 | R-Align: Enhancing Generative Reward Models through Rationale-Centric Meta-Judging | ✅ verified (arxiv) |
+| 2602.02219 | Am I More Pointwise or Pairwise? Revealing Position Bias in Rubric-Based LLM-as-a-Judge | ✅ verified (arxiv) |
+| 2601.22664 | Real-Time Aligned Reward Model beyond Semantics | ✅ verified (arxiv) |
+| 2601.18533 | From Verifiable Dot to Reward Chain: Harnessing Verifiable Reference-based Rewards for Reinforcement Learning of Open-ended Generation | ✅ verified (arxiv) |
+| 2601.08654 | From Rubrics to Reliable Scores: Evidence-Grounded Text Evaluation with LLM Judges | ✅ verified (arxiv) |
+| 2601.06487 | ArenaRL: Scaling RL for Open-Ended Agents via Tournament-based Relative Ranking | ✅ verified (arxiv) |
+| 2510.25884 | Approximating Human Preferences Using a Multi-Judge Learned System | ✅ verified (arxiv) |
+| 2510.24235 | PaTaRM: Bridging Pairwise and Pointwise Signals via Preference-Aware Task-Adaptive Reward Modeling | ✅ verified (arxiv) |
+| 2510.14240 | LiveResearchBench: A Live Benchmark for User-Centric Deep Research in the Wild | ✅ verified (arxiv) |
+| 2509.22624 | SPARK: Synergistic Policy And Reward Co-Evolving Framework | ✅ verified (arxiv) |
+| 2509.21319 | RLBFF: Binary Flexible Feedback to bridge between Human Feedback & Verifiable Rewards | ✅ verified (arxiv) |
+| 2506.11763 | DeepResearch Bench: A Comprehensive Benchmark for Deep Research Agents | ✅ verified (arxiv) |
+| 2506.01937 | RewardBench 2: Advancing Reward Model Evaluation | ✅ verified (arxiv) |
+| 2505.16265 | Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models | ✅ verified (arxiv) |
+| 2505.15034 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | ✅ verified (arxiv) |
+| 2505.12763 | Rethinking Reward Model Evaluation Through the Lens of Reward Overoptimization | ✅ verified (arxiv) |
+| 2505.11475 | HelpSteer3-Preference: Open Human-Annotated Preference Data across Diverse Tasks and Languages | ✅ verified (arxiv) |
+| 2505.10320 | J1: Incentivizing Thinking in LLM-as-a-Judge via Reinforcement Learning | ✅ verified (arxiv) |
+| 2505.02387 | RM-R1: Reward Modeling as Reasoning | ✅ verified (arxiv) |
+| 2504.14716 | Pairwise or Pointwise? Evaluating Feedback Protocols for Bias in LLM-Based Evaluation | ✅ verified (arxiv) |
+| 2504.10045 | CHARM: Calibrating Reward Models With Chatbot Arena Scores | ✅ verified (arxiv) |
+| 2504.02495 | Inference-Time Scaling for Generalist Reward Modeling | ✅ verified (arxiv) |
+| 2504.00050 | JudgeLRM: Large Reasoning Models as a Judge | ✅ verified (arxiv) |
+| 2503.06810 | Mitigating Preference Hacking in Policy Optimization with Pessimism | ✅ verified (arxiv) |
+| 2412.13091 | LMUnit: Fine-grained Evaluation with Natural Language Unit Tests | ✅ verified (arxiv) |
+| 2410.23726 | Towards Reliable Alignment: Uncertainty-aware RLHF | ✅ verified (arxiv) |
+| 2410.14872 | How to Evaluate Reward Models for RLHF | ✅ verified (arxiv) |
+| 2410.01257 | HelpSteer2-Preference: Complementing Ratings with Preferences | ✅ verified (arxiv) |
+| 2408.15240 | Generative Verifiers: Reward Modeling as Next-Token Prediction | ✅ verified (arxiv) |
+| 2406.12845 | Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts | ✅ verified (arxiv) |
+| 2406.11939 | From Crowdsourced Data to High-Quality Benchmarks: Arena-Hard and BenchBuilder Pipeline | ✅ verified (arxiv) |
+| 2406.05761 | The BiGGen Bench: A Principled Benchmark for Fine-grained Evaluation of Language Models with Language Models | ✅ verified (arxiv) |
+| 2406.04770 | WildBench: Benchmarking LLMs with Challenging Tasks from Real Users in the Wild | ✅ verified (arxiv) |
+| 2403.05171 | Overcoming Reward Overoptimization via Adversarial Policy Optimization with Lightweight Uncertainty Estimation | ✅ verified (arxiv) |
+| 2402.13210 | Bayesian Reward Models for LLM Alignment | ✅ verified (arxiv) |
+| 2401.12187 | WARM: On the Benefits of Weight Averaged Reward Models | ✅ verified (arxiv) |
+| 2306.05685 | Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena | ✅ verified (arxiv) |
+
