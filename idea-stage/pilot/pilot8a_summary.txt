@@ -1,0 +1,20 @@
+== P8-A' paired deltas vs plain: presence | two-stage(h0,c-3) | two-stage minus presence [95% CI]
+  hedged   n= 94  -0.048 | -0.045 | +0.003 (-0.033, 0.038)
+  disj3    n= 80  -0.154 | -0.211 | -0.057 (-0.098, -0.017)
+  disj9    n= 75  -0.178 | -0.264 | -0.086 (-0.131, -0.039)
+  numpert  n= 52  -0.066 | -0.334 | -0.268 (-0.398, -0.157)
+  numsub   n= 52  -0.064 | -0.217 | -0.153 (-0.252, -0.072)
+  aware    n=100  +0.203 | +0.248 | +0.045 (0.005, 0.091)
+  padded   n=100  +0.001 | +0.001 | +0.000 (-0.023, 0.023)
+  generic  n=100  -0.110 | -0.113 | -0.003 (-0.034, 0.026)
+  blist    n=100  -0.194 | -0.212 | -0.018 (-0.068, 0.036)
+  ideal    n=100  -0.280 | -0.390 | -0.110 (-0.198, -0.028)
+  decisive n= 98  -0.382 | -0.418 | -0.036 (-0.102, 0.02)
+A1 (hedged: two-stage more negative than presence by <= -0.05, CI excludes 0): diff=+0.003 CI=(-0.033,0.038) -> FAIL
+A2 presence  numpert: penalised 0.46 (n=52) vs same-text floor 0.35 -> PASS; mean Δ -0.066
+A2 presence  numsub: penalised 0.50 (n=52) vs same-text floor 0.35 -> PASS; mean Δ -0.064
+A2 two-stage numpert: penalised 0.71 (n=52) vs same-text floor 0.35 -> PASS; mean Δ -0.334
+A2 two-stage numsub: penalised 0.60 (n=52) vs same-text floor 0.35 -> PASS; mean Δ -0.217
+evasive share among presence-met positive items: {'ideal': '0.033(n=366)', 'plain': '0.014(n=586)', 'hedged': '0.031(n=519)', 'disj3': '0.054(n=387)', 'disj9': '0.083(n=351)', 'aware': '0.005(n=786)', 'generic': '0.030(n=508)'}
+A3 (ideal evasive share <= plain): 0.033 vs 0.014 -> FAIL
+contradicted label counts: {'plain': 23, 'numpert': 49, 'numsub': 36, 'ideal': 40}
