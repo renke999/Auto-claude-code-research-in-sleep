@@ -1,7 +1,7 @@
 # Experiment Plan
 
 **Problem**: 逐条 presence 型 rubric 奖励在 RL 下被优化成"rubric 分高、专家标准更差"的回答（含糊、罗列断言、错误具体值）；单独加真实性惩罚会把压力转移到含糊。
-**Method Thesis**: 对内容型 rubric 条目按立场给分（承诺 +w / 含糊 0 / 未覆盖 0 / 矛盾 −3w），把隐含承诺阈值 τ(h,c)=(h−c)/(1−c) 从 1 降到 0.75——同时给承诺与真实定价；行为条目与负向条目保持 presence。
+**Method Thesis**: 对内容型 rubric 条目按立场给分（承诺 +w / 含糊 0 / 未覆盖 0 / 矛盾 c*·w），把有效承诺阈值从 1 降到 ≈0.75（c* 按 judge 召回 q 与误报 f 标定：τ_eff=(h_eff−1+q(1−c))/((q−f)(1−c))）——同时给承诺与真实定价；行为条目与负向条目保持 presence。
 **Date**: 2026-10-09
 **Source**: `refine-logs/FINAL_PROPOSAL.md`（round-1 refinement）；pilot 证据见 `idea-stage/IDEA_REPORT.md`。
 
@@ -33,7 +33,7 @@
 ### Block 1（GPU）：GRPO 三臂主实验
 - **Claim tested**：C1、C2。
 - **Dataset / split**：HealthBench 5,000 prompt 按 prompt_id → 4,000 训练 / 1,000 held-out（held-out 取自 3,671 个带共识条目的 prompt；训练只用 example 级条目）。
-- **Compared systems**：A presence（h=1,c=0）；B truth-only（h=1,c=−3；补充 h=1,c=−1 = ConRub 式）；C stance（h=0,c=−3）。相同训练 judge（Qwen3-32B 级，非思考，T=0，两阶段 v3 提示）。
+- **Compared systems**：A presence（h=1,c=0）；B truth-only（h=1,c=c*）；C stance（h=0,c=c*）。c* 来自 Pilot 10（并在 M1 的训练 judge 上重测）。相同训练 judge（Qwen3-32B 级，非思考，T=0，两阶段 v3 提示）。
 - **Setup**：Qwen3-8B，GRPO，G=8，64 prompt/step，~500 step，lr 1e-6，KL 0.001，std 归一化；2 seeds/臂；每 50 step 存 checkpoint。
 - **Metrics**（held-out，**跨模型族** judge，如 GPT-4.1 / Gemini 系，经 meta-eval 医师标注校准）：
   - 主：共识条目分（医师验证的 cluster 级条目）。
@@ -46,9 +46,9 @@
 
 ### Block 2（GPU）：机制消融（τ 与归一化）
 - **Claim tested**：C3、anti-claim。
-- **Systems**：C + {h=0.5,c=−3（τ=0.875）; h=0,c=−1（τ=0.5）; C with mean-only advantage（Dr. GRPO 式）}；1 seed 各。
+- **Systems**：{h=0, c=−1（q 低时真实性定价失效的对照）; h=0.5, c=c*; h=1, c=−1（ConRub 式）; C with mean-only advantage（Dr. GRPO 式）}；1 seed 各。
 - **Metrics**：训练后有效承诺阈值（在 held-out 上按策略自报置信/重采样一致性分桶，估计承诺概率对 p 的阶跃位置）、含糊/错误/省略比例、共识分。
-- **Success criterion**：有效阈值排序与 τ 预测一致；mean-only 下 c 的边际作用不饱和（std 归一化下单样本优势上界 −√(G−1)）。
+- **Success criterion**：有效阈值排序与 τ_eff 预测一致（特别是 h=0,c=−1 在 q<0.5 时应出现"承诺错误"增加）；mean-only 下 c 的边际作用不饱和（std 归一化下单样本优势上界 −√(G−1)）。另报告预登记的"行为条目样板"指标。
 - **Priority**：MUST-RUN（h=0.5 与 mean-only）；NICE-TO-HAVE（c=−1）。
 
 ### Block 3（GPU + 人工）：人类锚定与 judge 稳健性
@@ -68,7 +68,7 @@
 
 | Milestone | Goal | Runs | Decision Gate | Cost |
 |---|---|---|---|---|
-| M0 | 静态闸门 | Pilot 8/9（API） | B1、B2、G1–G4 全过（否则按预登记调整 c / 判定） | ~1 天 API |
+| M0 | 静态闸门 | Pilot 9/9c/10（API） | G1/G3/G4（已过）、G1'、G2'、B1/B2；得到 c* | ~1 天 API |
 | M1 | 训练 judge 复现 | 在 Qwen3-32B 上重跑 Pilot 9 的 G1–G4（训练 judge ≠ Haiku） | 同上闸门在训练 judge 上成立 | ~4 GPU-h |
 | M2 | 4B 预演 | A/B/C 各 1 seed，200 step | 管线正常；B 的含糊趋势可见 | ~150 H100-h |
 | M3 | 8B 主实验 | A/B/C × 2 seeds | C1/C2 成功标准 | ~600 H100-h |
