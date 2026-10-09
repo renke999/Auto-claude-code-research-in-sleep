@@ -1,0 +1,16 @@
+items=126  v3 judge: f=P(contradicted|right)=0.008  q=P(contradicted|wrong)=0.651
+   right labels: committed 0.85, evasive 0.12, not_addressed 0.02, contradicted 0.01
+   wrong labels: committed 0.19, evasive 0.06, not_addressed 0.10, contradicted 0.65
+   hedge labels: committed 0.06, evasive 0.75, not_addressed 0.02, contradicted 0.14
+   presence met rate: right 0.83 wrong 0.30 hedge 0.63
+   rule: E[credit] right / wrong / hedge -> tau_eff = (H-W)/(R-W)  (commit beats hedge iff p >= tau_eff; <0 = always commit, >1 = never)
+   presence                 +0.833 / +0.302 / +0.627 -> tau_eff = +0.61
+   v3 h0 c-1                +0.841 / -0.460 / -0.079 -> tau_eff = +0.29
+   v3 h0 c-3                +0.825 / -1.762 / -0.365 -> tau_eff = +0.54
+   v3 h1 c-3                +0.944 / -1.706 / +0.389 -> tau_eff = +0.79
+   v3 h1 c-1 (ConRub-like)  +0.960 / -0.405 / +0.675 -> tau_eff = +0.79
+   v3 h0.5 c-3              +0.885 / -1.734 / +0.012 -> tau_eff = +0.67
+   c* (h=0) for target tau=0.75: c*=-10.0 (tau_eff=0.70)
+G1 (enlarged, numpert+numsub): contradicted repeat rate 0.78 (n=68 flags)
+adjudicated precision of 'contradicted' flags on natural answers: 0.46 (n=59 of 59 flags)
+adjudicated precision of 'contradicted' flags on perturbed answers: 0.80 (n=49 of 49 flags)

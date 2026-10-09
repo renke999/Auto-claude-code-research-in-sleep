@@ -18,6 +18,7 @@
   - **考虑 judge 能力的有效阈值**：设 judge 对错误值的召回为 q、对正确内容误标矛盾的概率为 f、含糊菜单的实际得分为 h_eff，则 **τ_eff = (h_eff − 1 + q(1−c)) / ((q − f)(1 − c))**（完美 judge 时退化为 τ(h,c)）。h=0 时只有 q > 1/(1−c) 错误才有成本 → 惩罚强度必须按 judge 标定：**c\* = 使 τ_eff ≈ 0.75 的 c**（由条目对齐探针测得，Pilot 10）。任何 h<1 都会恢复一个有限阈值；h=0 使阈值最低，并使最不稳定的 evasive/not_addressed 边界不影响奖励（稳健性上的额外好处）。
 - 现有修复都是单轴的（聚合：ProRubric/GEAR/Dropout；生成：RubricArmor；真实性门控：ConRub-Med、MetaRubric、CaRR），且都没有 hedged 状态；Kalai et al.（2509.04664）的阈值打分只针对短答 IDK，把 hedging 留作未来工作。
 - 实证（API-only，HealthBench，v3 判定 = 本方法的判定器；Pilot 9）：相对普通回答，presence 对含糊改写 / "大概 X 也可能 Y"式改写 / ×3÷3 错数值 / ×1.5÷1.5 错数值只降 −0.048 / −0.110 / −0.066 / −0.064；stance（h=0,c=−3）为 −0.160 / −0.211 / −0.255 / −0.173；错数值扣分率 0.67 / 0.63（同文本误罚底 0.40；presence 0.46 / 0.50，底 0.33）。**逃生通道的静态证据**："含糊的错误 − 承诺的错误"在 presence 下为 −0.049（虚张声势更划算），在只加真实性惩罚（h=1,c=−3）下为 **+0.127**（含糊成为避难所），在 stance（h=0,c=−3）下为 −0.016（都不被奖励）。经验 τ 在 v3 规则族内的排序与 τ(h,c) 一致。
+- **条目对齐探针（Pilot 10，126 个含数字的内容条目）给出的三动作最优策略**：presence——低置信时含糊、p≥0.62 才承诺，且承诺错误仍得正分（+0.30）；只加真实性惩罚（h=1，c=−1 或 −3）——含糊区域扩大到 p<0.80（**逃生通道**）；stance（h=0）——含糊永不最优，低置信时省略，c=−1 时 p≥0.36 即承诺（虚张声势），c=−3 时 0.69，**c\*≈−4 时 0.75**。judge 参数 f=0.008、q=0.65。
 - 判定器可靠性：contradicted 同文本重现率 0.80（引文 + 复问后，n=20，Wilson CI [0.58, 0.92]）；Sonnet 作判定器时对注入错误的配对敏感度 0.44 vs 0.00。原 G2（理想回答触发率 ≤ plain）未过（Haiku 0.16 vs 0.12；Sonnet 0.15 vs 0.09），但被 R2 评审判为设计错误（功效不足、锚在过时理想回答上、测频率而非精确率），以人工裁决精确率闸门 G2' 取代（Pilot 10）；"按预登记降到 c=−1"的补救被撤回（会丢掉真实性定价），偏离已公开记录。
 
 ## Method Thesis
@@ -39,7 +40,7 @@
 content(i) := w_i > 0 and axis_i ∈ {accuracy, completeness}
 ℓ_i ∈ {committed, evasive, not_addressed, contradicted}  (COMMIT judge, content items only)
 m_i ∈ {0,1}                                              (PRESENCE judge, all other items)
-g(ℓ) = {committed: 1, evasive: h, not_addressed: 0, contradicted: c};  h = 0, c = c* (主臂；由 Pilot 10 的 q、f、h_eff 标定), c = −1 (消融)
+g(ℓ) = {committed: 1, evasive: h, not_addressed: 0, contradicted: c};  h = 0, c = c* (主臂；用本 pilot 的 Haiku 判定器标定为 ≈ −4，使承诺/省略阈值 ≈ 0.75；M1 在训练 judge 上重新标定), c = −1 (消融)
 R(y) = [ Σ_{content i} w_i·g(ℓ_i) + Σ_{non-content i, w_i>0} w_i·m_i + Σ_{i: w_i<0} w_i·m_i ] / Σ_{i: w_i>0} w_i
 ```
 - 不裁剪（范围约 [−3, 1]；GRPO 组内标准化吸收尺度）。缺失/解析失败的 ℓ_i → 该条目回退为 presence 判定并记日志。
@@ -64,7 +65,7 @@ R(y) = [ Σ_{content i} w_i·g(ℓ_i) + Σ_{non-content i, w_i>0} w_i·m_i + Σ_
 ## Claim-Driven Validation Sketch
 - **C1（主）**：GRPO 三臂 A presence（h=1,c=0）/ B 真实性-only（h=1,c=c\*）/ C stance（h=0,c=c\*）；消融：h=0,c=−1；h=0.5,c=c\*；h=1,c=−1（ConRub 式）；C + mean-only 归一化。预期：A 的 rubric 覆盖错误随训练↑；B 的含糊↑（定义无关指标 + 跨族 judge 的 evasive）且错误↓；C 两者都↓。
 - **C2（辅）**：C 在 held-out 共识指标（跨族 judge 评分，经 meta-eval 医师标注校准）上非劣于 A（margin 0.01），并在医师 BoN-4（API）上非劣。
-- 前置闸门：Pilot 9 G1/G3/G4 已通过；G1'（扩大）/ G2'（精确率）与 c\* 见 Pilot 10；医师 BoN-4 非劣（B1/B2 再登记为 Pilot 9c）；训练 judge（开源 32B）上复现全部闸门（M1）。
+- 前置闸门：Pilot 9 G1/G3/G4 已通过；Pilot 10 G1' 通过（0.78，n=68），G2' 差一点未过（自然回答 flag 精确率 0.46 < 0.50；f=0.008）→ M1 必须换更强训练 judge 或收紧 grounding 后重测；医师 BoN-4 非劣（B1/B2 再登记为 Pilot 9c）；训练 judge（开源 32B）上复现全部闸门（M1）。
 - **预登记的"行为条目样板"指标**（R2 评审：C 臂可能把压力转向附加"不确定/建议就医/请提供更多信息"之类的通用样板以拿行为条目分）：行为条目得分占比、通用不确定/索取信息样板句的比例（词典 + 跨族 judge）；并在 M2 检查 A 臂的 rubric 覆盖错误率是否随训练上升（前提检验）。
 
 ## Compute & Timeline

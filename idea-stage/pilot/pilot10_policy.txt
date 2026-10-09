@@ -1,0 +1,9 @@
+items=126
+presence                         R=+0.833 W=+0.302 H=+0.627 | optimal action by confidence p: hedge@p>=0.00 -> commit@p>=0.62
+truth-only h1 c-1 (ConRub-like)  R=+0.960 W=-0.405 H=+0.675 | optimal action by confidence p: hedge@p>=0.00 -> commit@p>=0.80
+truth-only h1 c-3                R=+0.944 W=-1.706 H=+0.389 | optimal action by confidence p: hedge@p>=0.00 -> commit@p>=0.80
+stance h0 c-1                    R=+0.841 W=-0.460 H=-0.079 | optimal action by confidence p: omit@p>=0.00 -> commit@p>=0.36
+stance h0 c-3                    R=+0.825 W=-1.762 H=-0.365 | optimal action by confidence p: omit@p>=0.00 -> commit@p>=0.69
+stance h0 c-4                    R=+0.817 W=-2.413 H=-0.508 | optimal action by confidence p: omit@p>=0.00 -> commit@p>=0.75
+h0.5 c-3                         R=+0.885 W=-1.734 H=+0.012 | optimal action by confidence p: hedge@p>=0.00 -> commit@p>=0.67
+h=0: c* putting the commit-vs-omit threshold at 0.75 -> c*=-4.1 (threshold 0.752)
