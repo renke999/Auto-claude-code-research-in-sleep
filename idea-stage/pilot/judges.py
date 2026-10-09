@@ -320,7 +320,7 @@ def commit3_many(jobs, workers=10, model=JUDGE, recheck=True):
             re = commit3_many(uniq, workers, model, recheck=False)
             for j, i in flagged:
                 if re[seen[j]][i] != "contradicted":
-                    labs[j][i] = "not_addressed"
+                    labs[j][i] = re[seen[j]][i] or "not_addressed"
     return labs
 
 
@@ -334,3 +334,25 @@ def v3_score(rubrics, met, lab, h=0.0, c=-3.0):
         elif m:
             tot += w
     return tot / pos if pos else 0.0
+
+
+def commit3_quotes(ex, response, tag="", model=JUDGE):
+    """Re-parse the (cached) COMMIT3 outputs for one response and return {item_index: quote} for contradicted labels."""
+    idx = content_idx(ex)
+    out = {}
+    for s0 in range(0, len(idx), CHUNK):
+        sub = idx[s0:s0 + CHUNK]
+        items = "\n".join(f"{i}. {ex['rubrics'][i]['criterion']}" for i in sub)
+        p = COMMIT3.format(convo=convo_text(ex["prompt"]), response=response, items=items) + (f"\n\n[{tag}]" if tag else "")
+        try:
+            arr = llm.extract_json(llm.call(p, model))
+        except Exception:
+            continue
+        for obj in arr:
+            try:
+                i = int(obj["id"])
+            except Exception:
+                continue
+            if i in sub and obj.get("label") == "contradicted":
+                out[i] = obj.get("quote", "")
+    return out
