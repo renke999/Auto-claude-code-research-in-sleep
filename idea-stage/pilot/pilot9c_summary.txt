@@ -1,0 +1,10 @@
+Pilot 9c physician BoN-4 (v3): pools=300 (hedging/context 163, other 137); random gold 0.764; oracle 0.954
+  presence                 all: gold 0.877 Δ+0.000[+0.000,+0.000] P(best) 0.751 conc 0.736 | hed: gold 0.865 Δ+0.000[+0.000,+0.000] P(best) 0.736 conc 0.727 | oth: gold 0.891 Δ+0.000[+0.000,+0.000] P(best) 0.768 conc 0.747
+  v3 h0 c-3                all: gold 0.875 Δ-0.001[-0.016,+0.013] P(best) 0.748 conc 0.732 | hed: gold 0.861 Δ-0.003[-0.020,+0.014] P(best) 0.727 conc 0.736 | oth: gold 0.892 Δ+0.001[-0.024,+0.026] P(best) 0.772 conc 0.727
+  v3 h0.5 c-3              all: gold 0.884 Δ+0.008[-0.006,+0.022] P(best) 0.770 conc 0.750 | hed: gold 0.876 Δ+0.011[-0.004,+0.028] P(best) 0.761 conc 0.754 | oth: gold 0.894 Δ+0.003[-0.021,+0.027] P(best) 0.781 conc 0.745
+  v3 h1 c-3                all: gold 0.884 Δ+0.007[-0.007,+0.022] P(best) 0.766 conc 0.746 | hed: gold 0.868 Δ+0.003[-0.017,+0.024] P(best) 0.736 conc 0.737 | oth: gold 0.903 Δ+0.012[-0.009,+0.034] P(best) 0.800 conc 0.758
+  v3 h0 c-1                all: gold 0.873 Δ-0.003[-0.017,+0.011] P(best) 0.746 conc 0.744 | hed: gold 0.860 Δ-0.004[-0.020,+0.012] P(best) 0.727 conc 0.742 | oth: gold 0.889 Δ-0.002[-0.025,+0.021] P(best) 0.768 conc 0.745
+  v3 h1 c-1 (ConRub-like)  all: gold 0.883 Δ+0.007[-0.007,+0.021] P(best) 0.766 conc 0.765 | hed: gold 0.870 Δ+0.005[-0.016,+0.026] P(best) 0.742 conc 0.756 | oth: gold 0.899 Δ+0.008[-0.011,+0.029] P(best) 0.793 conc 0.777
+  v3 h0 c-4.1 (c*)         all: gold 0.875 Δ-0.002[-0.016,+0.013] P(best) 0.746 conc 0.729 | hed: gold 0.861 Δ-0.003[-0.020,+0.014] P(best) 0.727 conc 0.731 | oth: gold 0.891 Δ+0.000[-0.025,+0.025] P(best) 0.768 conc 0.726
+B1 (v3 non-inferiority, CI lower bound > -0.01): Δ=-0.0012 lower=-0.0158 -> FAIL
+B2 (hedging/context pools point estimate > -0.02): Δ=-0.0033 -> PASS
