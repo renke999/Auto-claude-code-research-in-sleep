@@ -1,0 +1,22 @@
+{
+ "ideal>aware": {
+  "p": 0.255,
+  "n": 100,
+  "order_consistency": 0.87
+ },
+ "ideal>plain": {
+  "p": 0.02,
+  "n": 100,
+  "order_consistency": 1.0
+ },
+ "plain>aware": {
+  "p": 0.95,
+  "n": 100,
+  "order_consistency": 1.0
+ },
+ "ideal>blist": {
+  "p": 0.59,
+  "n": 100,
+  "order_consistency": 0.92
+ }
+}

@@ -1,0 +1,4 @@
+P(ideal preferred over aware) = 0.255  n=100  order-consistency=0.87
+P(ideal preferred over plain) = 0.020  n=100  order-consistency=1.00
+P(plain preferred over aware) = 0.950  n=100  order-consistency=1.00
+P(ideal preferred over blist) = 0.590  n=100  order-consistency=0.92
