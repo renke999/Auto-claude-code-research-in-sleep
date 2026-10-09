@@ -1,3 +1,4 @@
 .cache/
+bank.jsonl
 *.log
 __pycache__/
