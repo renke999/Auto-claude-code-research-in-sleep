@@ -1,0 +1,5 @@
+holistic pairwise (Sonnet) physician BoN-4: pools=100 gold(pick)=0.825 random=0.731 P(best)=0.622 concordance=0.657
+presence on same 100 pools: gold=0.852 P(best)=0.733 conc=0.727
+proper on same 100 pools: gold=0.833 P(best)=0.652 conc=0.711
+
+[exited with code 0]
