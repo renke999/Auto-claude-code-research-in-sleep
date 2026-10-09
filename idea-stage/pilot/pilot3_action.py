@@ -127,7 +127,9 @@ def stage_a(n=100):
     rows = P.build_variants(n)
     items = []
     for i, (ex, v) in enumerate(rows):
-        resps = {k: (None if (k in P.__dict__.get("REWRITES", set()) and is_rewrite_refusal(t)) else t) for k, t in v.items()}
+        resps = dict(v)
+        # reader-leakage control (novelty-check caution): a content-free non-answer
+        resps["blank"] = "Thanks for your question. Everyone's situation is different, so please talk to a healthcare professional who can advise you."
         for k in ("hedged", "disj1", "disj3", "disj9", "decisive", "padded"):
             if is_rewrite_refusal(resps.get(k)):
                 resps[k] = None
